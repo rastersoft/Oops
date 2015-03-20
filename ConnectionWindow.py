@@ -91,7 +91,7 @@ class ConnectionWindow(wx.Frame):
 		wx.EVT_TASKBAR_LEFT_UP(self.TrayIcon, self.RestoreWindow)
 		
 		#Buttons
-		self.connectButton = wx.Button(self, 10, "Start", wx.Point(xval1, 81))
+		self.connectButton = wx.Button(self, 10, "Commencer", wx.Point(xval1, 81))
 		self.connectButton.SetDefault()
 		wx.EVT_BUTTON(self, 10, self.ConnectSupport)
 		self.stopButton = wx.Button(self, wx.ID_STOP, "", wx.Point(xval2, 81))
@@ -99,8 +99,8 @@ class ConnectionWindow(wx.Frame):
 		wx.EVT_BUTTON(self, wx.ID_STOP, self.KillPID)
 		
 		# Radio Boxes
-		self.rb1 = wx.RadioButton(self, -1, 'Get Help', (10, 15), style=wx.RB_GROUP)
-		self.rb2 = wx.RadioButton(self, -1, 'Give Support', (10, 48))
+		self.rb1 = wx.RadioButton(self, -1, 'Se faire aider', (10, 15), style=wx.RB_GROUP)
+		self.rb2 = wx.RadioButton(self, -1, 'Aider', (10, 48))
 		self.rb1.SetValue(True)
 		
 		self.Bind(wx.EVT_RADIOBUTTON, self.RadioToggle, id=self.rb1.GetId())
@@ -109,11 +109,11 @@ class ConnectionWindow(wx.Frame):
 		# checkbox for natpmp
 		if sys.platform == 'darwin' or re.match('(?:open|free|net)bsd|linux',sys.platform):
 			if self.enablePMP:
-				self.cb1 = wx.CheckBox(self, -1, 'Use NAT-PMP', (130, 48))
+				self.cb1 = wx.CheckBox(self, -1, 'Utiliser NAT-PMP', (130, 48))
 				self.cb1.Enable(False)
 
 		# Checkbox for low color
-		self.cb2 = wx.CheckBox(self, -1, 'Use low colors', (10, 81))
+		self.cb2 = wx.CheckBox(self, -1, 'Utiliser des couleurs pauvres', (10, 81))
 		self.cb2.Set3StateValue(False)
 		self.cb2.SetValue(self.paths['low-colors']) # Use value of --low-colors from command line
 		self.cb2.Enable(False)
@@ -123,45 +123,45 @@ class ConnectionWindow(wx.Frame):
 		
 		self.sampleList = self.getHosts(self.sampleList, os.path.join(self.paths['main'], 'hosts.txt'))
 		self.sampleList = self.getHosts(self.sampleList, self.paths['preferences'])
-		self.displayHostBox(self.sampleList, "Enter/Select Support Address")
+		self.displayHostBox(self.sampleList, "Entrer l'adresse du support")
 		
 		# Menu      
 		menuBar = wx.MenuBar()
 		fileMenu = wx.Menu()
 		
 		editMenu = wx.Menu()
-		editMenu.Append(11, "&Cut\tCtrl+X", "Cut IP Address")
-		editMenu.Append(12, "&Copy\tCtrl+C", "Copy IP Address")
-		editMenu.Append(wx.ID_PASTE, "&Paste\tCtrl+V", "Paste IP Address")
+		editMenu.Append(11, "&Couper\tCtrl+X", "Couper l'adresse IP")
+		editMenu.Append(12, "&Copier\tCtrl+C", "Copier l'adresse IP")
+		editMenu.Append(wx.ID_PASTE, "&Coller\tCtrl+V", "Coller l'adresse IP")
 		wx.EVT_MENU(self, 11, self.SetClipboard)
 		wx.EVT_MENU(self, 12, self.SetClipboard)
 		wx.EVT_MENU(self, wx.ID_PASTE, self.GetClipboard)
 		
-		fileMenu.Append(13, "&Clear History", "Clear History")
+		fileMenu.Append(13, "&Nettoyer l'historique", "Nettoyer l'historique")
 		if sys.platform == 'darwin':
-			fileMenu.Append(wx.ID_ABOUT, "&About", "About Gitso")
+			fileMenu.Append(wx.ID_ABOUT, "&À propos", "À propos de Gitso")
 			wx.EVT_MENU(self, wx.ID_ABOUT, self.ShowAbout)
 		else:       
-			fileMenu.Append(wx.ID_EXIT, "&Quit\tCtrl+Q", "Quit Gitso")
+			fileMenu.Append(wx.ID_EXIT, "&Quitter\tCtrl+Q", "Quitter Gitso")
 			wx.EVT_MENU(self, wx.ID_EXIT, self.OnCloseWindow)
 		
 		helpMenu = wx.Menu()
-		helpMenu.Append(wx.ID_ABOUT, "&About", "About Gitso")
+		helpMenu.Append(wx.ID_ABOUT, "&À propos", "À propos de Gitso")
 		wx.EVT_MENU(self, wx.ID_ABOUT, self.ShowAbout)
 		
 		wx.EVT_MENU(self, 13, self.clearHistory)
 		
-		menuBar.Append(fileMenu, "&File")
-		menuBar.Append(editMenu, "&Edit")
+		menuBar.Append(fileMenu, "&Fichier")
+		menuBar.Append(editMenu, "&Éditer")
 		
 		if re.match('(?:open|free|net)bsd|linux',sys.platform) or sys.platform == 'win32':
-			menuBar.Append(helpMenu, "&Help")
+			menuBar.Append(helpMenu, "&Aide")
 		
 		self.SetMenuBar(menuBar)
 		
 		self.statusBar = self.CreateStatusBar()
 		self.statusBar.SetStatusWidths([350])
-		self.setMessage("Idle", False)
+		self.setMessage("Absent", False)
 		
 		self.SetDefaultItem(self.hostField)
 		self.hostField.SetFocus()
@@ -214,26 +214,26 @@ class ConnectionWindow(wx.Frame):
 		@author: Aaron Gerber
 		"""
 		if self.rb1.GetValue(): # Get Help
-			if self.validHost(self.hostField.GetValue().strip()) and self.hostField.GetValue() != "Enter/Select Support Address":
-				self.setMessage("Connecting...", True)
+			if self.validHost(self.hostField.GetValue().strip()) and self.hostField.GetValue() != "Entrer l'adresse du support":
+				self.setMessage("Conenction...", True)
 				
 				host = self.hostField.GetValue().strip()
 				
 				self.sampleList = []
 				self.sampleList = self.getHosts(self.sampleList, os.path.join(self.paths['main'], 'hosts.txt'))
-				self.sampleList = self.getHosts(self.sampleList, self.paths['preferences'])
+				self.sampleList = self.getHosts(self.sampleList, self.paths['Préférences'])
 				
 				if self.sampleList.count(host) == 0:
-					self.saveHost(self.paths['preferences'], host)
+					self.saveHost(self.paths['Préférences'], host)
 					self.sampleList.append(host)
 					self.hostField.Destroy()
 					self.displayHostBox(self.sampleList, host)
 				
 				self.createThread(host)
 			else:
-				self.setMessage("Invalid Support Address", False)
+				self.setMessage("Adresse de support invalide", False)
 		else: # Give Suppport
-			self.setMessage("Starting Server...", True)
+			self.setMessage("Lancement du serveur ...", True)
 			self.createThread()
 
 
@@ -244,11 +244,11 @@ class ConnectionWindow(wx.Frame):
 		@author: Derek Buranen
 		@author: Aaron Gerber
 		"""
-		about = AboutWindow.AboutWindow(self, wx.ID_ABOUT, "About Gitso", self.paths)
+		about = AboutWindow.AboutWindow(self, wx.ID_ABOUT, "À propos de Gitso", self.paths)
 	
 	
 	def clearHistory(self, event):
-		handle = open(self.paths['preferences'], 'w')
+		handle = open(self.paths['Préférences'], 'w')
 		handle.write("")
 		handle.close()
 		
@@ -257,7 +257,7 @@ class ConnectionWindow(wx.Frame):
 
 		self.sampleList = []
 		self.sampleList = self.getHosts(self.sampleList, os.path.join(self.paths['main'], 'hosts.txt'))
-		self.sampleList = self.getHosts(self.sampleList, self.paths['preferences'])
+		self.sampleList = self.getHosts(self.sampleList, self.paths['Préférences'])
 
 		self.displayHostBox(self.sampleList, text)
 	
@@ -308,7 +308,7 @@ class ConnectionWindow(wx.Frame):
 			time.sleep(.5)
 		self.thread = None
 		if showMessage :
-			self.setMessage("Idle.", False)
+			self.setMessage("Absent.", False)
 		return
 	
 	def OnCloseWindow(self, evt):

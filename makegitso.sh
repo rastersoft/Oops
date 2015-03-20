@@ -28,7 +28,7 @@
 #
 # Creates the source package, works on all UNIX/LINUX based platforms
 #
-function mksrc {
+mksrc () {
 		P=`pwd`
 		TMP_PKG="../pkg"
 
@@ -62,7 +62,7 @@ function mksrc {
 # Create the .app folder for snow leopard, it uses a different version of pythong
 # And because py2app needs to know there, we just use different config files.
 #
-function snowLeopardDMG {
+snowLeopardDMG () {
 	# Grab the default option and then reset it at the end.
 	#defaults write com.apple.versioner.python Prefer-32-Bit -bool yes
 	echo -e "Creating Gitso.app "
@@ -122,7 +122,7 @@ function snowLeopardDMG {
 # Create the .app folder for Leopard, it uses a different version of pythong
 # And because py2app needs to know there, we just use different config files.
 #
-function LeopardDMG {
+LeopardDMG () {
 	echo -e "Creating Gitso.app "
 	rm -f setup.py
 	rm -rf $OSX_BUILD_DIR
@@ -179,7 +179,7 @@ function LeopardDMG {
 #
 # Displays the help menu
 #
-function helpMenu {
+helpMenu () {
 	echo -e "Usage makegitso.sh: [ BUILD OPTIONS ] [ OPTIONS ]"
 	echo -e "\tBUILD OPTIONS"
 	echo -e "\t--fedora\tMake package for Fedora. (only avaible on Fedora)"
