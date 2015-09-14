@@ -25,6 +25,8 @@ You should have received a copy of the GNU General Public License
 along with Gitso.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import pkg_data
+
 class InfoPage(wx.Panel):
 	def __init__(self, parent):
 		wx.Panel.__init__(self, parent)
@@ -101,7 +103,7 @@ class AboutWindow(wx.Frame):
 		text1.SetFont(font1)
 
 		text2 = wx.StaticText(self, -1, _("Gitso is to Support Others"))
-		text3 = wx.StaticText(self, -1, _("Version 0.6.3"))
+		text3 = wx.StaticText(self, -1, _("Version %s") % pkg_data.get_version())
 		font2 = wx.Font(16, wx.NORMAL, wx.NORMAL, wx.NORMAL)
 		font3 = wx.Font(12, wx.NORMAL, wx.NORMAL, wx.NORMAL)
 		text2.SetFont(font2)

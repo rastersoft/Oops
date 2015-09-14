@@ -39,8 +39,10 @@ def get_data_files():
     data_files = []
 
     if platform == 'unix':
-        data_files.append((os.path.join('share','icons','hicolor','512x512','apps'),['data/icons/icon.ico']))
-    data_files.append((os.path.join('.','share','gitso'),['data/icons/icon.ico']))        
+        data_files.append((os.path.join('share','icons','hicolor','512x512','apps'),['data/icons/icon.png']))
+    data_files.append((os.path.join('.','share','gitso'),['data/icons/icon.ico']))
+    data_files.append((os.path.join('.','share','gitso'),['data/icons/icon.png']))
+    data_files.append((os.path.join('.','share','doc','gitso'),['COPYING']))
 
     for lang_name in [f for f in os.listdir('locale')]:
         mofile = os.path.join('locale', lang_name,'LC_MESSAGES','gitso.mo')

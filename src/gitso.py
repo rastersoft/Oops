@@ -54,6 +54,7 @@ import os
 import Gitso.ConnectionWindow, Gitso.ArgsParser
 import gettext
 import locale
+import pkg_resources
 
 if sys.platform.startswith('win'):
 	if os.getenv('LANG') is None:

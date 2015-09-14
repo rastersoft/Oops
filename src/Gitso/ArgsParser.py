@@ -31,6 +31,7 @@ import os.path
 import urllib
 import re
 from gettext import gettext as _
+import pkg_data
 
 class ArgsParser:
 	def __init__(self):
@@ -63,7 +64,7 @@ class ArgsParser:
 			if sys.argv[i] == '--help': # --help
 				self.HelpMenu()
 			elif sys.argv[i] == '--version': # --version
-				print _("Gitso 0.6.3  -- Copyright 2007 - 2014 Aaron Gerber and Derek Buranen and AustP.")
+				print _("Gitso %s  -- Copyright 2007 - 2014 Aaron Gerber and Derek Buranen and AustP.") % pkg_data.get_version()
 				exit(0)
 			elif sys.argv[i] == '--dev': # --dev
 				print _("Running in 'Development Mode'")
