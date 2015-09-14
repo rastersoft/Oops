@@ -69,7 +69,7 @@ else:
 gettext.textdomain('gitso')
 
 if __name__ == "__main__":
-	app = wx.PySimpleApp()
+	app = wx.App(False)
 	args = Gitso.ArgsParser.ArgsParser()
 	Gitso.ConnectionWindow.ConnectionWindow(None, -1, "Gitso", args.GetPaths(), args.GetPort())
 	app.MainLoop()

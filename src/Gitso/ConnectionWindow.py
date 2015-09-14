@@ -67,26 +67,22 @@ class ConnectionWindow(wx.Frame):
 		self.enablePMP = False
 		
 		if re.match('(?:open|free|net)bsd|linux',sys.platform):
-			width = 165
-			height = 350
+			wsize = (350,195)
 			xval1 = 155
 			xval2 = 250
 		else:
-			height = 350
-			width = 175
+			wsize = (350,175)
 			xval1 = 180
 			xval2 = 265
-		
-		wx.Frame.__init__(self, parent, wx.ID_ANY, title, size=(height,width), style=wx.DEFAULT_FRAME_STYLE & ~(wx.FRAME_SHAPED | wx.RESIZE_BORDER | wx.RESIZE_BOX | wx.MAXIMIZE_BOX))
+
+		wx.Frame.__init__(self, parent, wx.ID_ANY, title, size=wsize, style=wx.DEFAULT_FRAME_STYLE & ~(wx.FRAME_SHAPED | wx.RESIZE_BORDER | wx.RESIZE_BOX | wx.MAXIMIZE_BOX))
 		self.Bind(wx.EVT_CLOSE, self.OnCloseWindow)
 		self.Bind(wx.EVT_ICONIZE, self.OnIconizeWindow)
 		
+		icon = wx.Icon(os.path.join(self.paths['main'], 'icon.ico'), wx.BITMAP_TYPE_ICO)
 		if sys.platform == 'win32':
-			icon = wx.Icon(os.path.join(self.paths['main'], 'icon.ico'), wx.BITMAP_TYPE_ICO)
 			self.SetBackgroundColour(wx.Colour(236,233,216))
-		else:
-			icon = wx.Icon(os.path.join(self.paths['main'], 'icon.ico'), wx.BITMAP_TYPE_ICO)
-			
+
 		self.SetIcon(icon)
 		self.TrayIcon = GitsoTaskBarIcon(icon, self)
 		wx.EVT_TASKBAR_LEFT_UP(self.TrayIcon, self.RestoreWindow)
