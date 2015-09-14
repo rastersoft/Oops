@@ -77,20 +77,19 @@ compile_translations()
 
 #here = os.path.abspath(os.path.dirname(__file__))
 
-setup(
-    name='gitso',
+params_setup = {}
 
-    version='0.7',
+params_setup['name'] = 'gitso'
+params_setup['version'] = '0.7'
+params_setup['description']='Gitso is to support others'
+params_setup['long_description']="A program to simplify using reverse VNC"
+params_setup['license']='GPLv3'
+params_setup['packages']=['Gitso']
+params_setup['package_dir'] = {"Gitso" : "src/Gitso"}
+params_setup['data_files'] = get_data_files()
+params_setup['scripts']=['src/gitso.py']
 
-    description='Gitso is to support others',
-    long_description = "A program to simplify using reverse VNC",
+if platform == 'windows':
+    params_setup['windows'] = [{"script":"Gitso.py", "icon_resources":[(1,"icon.ico")]}]
 
-    license='GPLv3',
-
-    packages=['Gitso'],
-
-    package_dir={"Gitso" : "src/Gitso"},
-
-    data_files = get_data_files(),
-    scripts=['src/gitso.py'],
-)
+setup(**params_setup)
