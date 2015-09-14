@@ -39,18 +39,18 @@ def get_data_files():
     data_files = []
 
     if platform == 'unix':
-        data_files.append((os.path.join('share','icons','hicolor','512x512','apps'),['data/icons/icon.png']))
-    data_files.append((os.path.join('.','share','gitso'),['data/icons/icon.ico']))
-    data_files.append((os.path.join('.','share','gitso'),['data/icons/icon.png']))
+        data_files.append((os.path.join('.','share','icons','hicolor','512x512','apps'),['data/icons/gitso.png']))
+    data_files.append((os.path.join('.','share','gitso'),['data/icons/gitso.ico']))
+    data_files.append((os.path.join('.','share','gitso'),['data/icons/gitso.png']))
     data_files.append((os.path.join('.','share','doc','gitso'),['COPYING']))
 
     for lang_name in [f for f in os.listdir('locale')]:
         mofile = os.path.join('locale', lang_name,'LC_MESSAGES','gitso.mo')
         # translations must be always in /usr/share because Gtk.builder only search there. If someone knows how to fix this...
         if platform == 'windows':
-            target = os.path.join('.', lang_name, 'LC_MESSAGES') # share/locale/fr/LC_MESSAGES/
+            target = os.path.join('.','locale', lang_name, 'LC_MESSAGES') # share/locale/fr/LC_MESSAGES/
         else:
-            target = os.path.join('/usr','share', 'locale', lang_name, 'LC_MESSAGES') # share/locale/fr/LC_MESSAGES/
+            target = os.path.join('.','share', 'locale', lang_name, 'LC_MESSAGES') # share/locale/fr/LC_MESSAGES/
         data_files.append((target, [mofile]))
 
     return data_files

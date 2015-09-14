@@ -79,7 +79,7 @@ class ConnectionWindow(wx.Frame):
 		self.Bind(wx.EVT_CLOSE, self.OnCloseWindow)
 		self.Bind(wx.EVT_ICONIZE, self.OnIconizeWindow)
 		
-		icon = wx.Icon(os.path.join(self.paths['main'], 'icon.ico'), wx.BITMAP_TYPE_ICO)
+		icon = wx.Icon(os.path.join(self.paths['main'], 'gitso.ico'), wx.BITMAP_TYPE_ICO)
 		if sys.platform == 'win32':
 			self.SetBackgroundColour(wx.Colour(236,233,216))
 

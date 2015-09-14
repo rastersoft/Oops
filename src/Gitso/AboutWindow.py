@@ -94,7 +94,7 @@ class AboutWindow(wx.Frame):
 		if sys.platform == 'win32':
 			self.SetBackgroundColour(wx.Colour(236,233,216))
 
-		icon = wx.Icon(os.path.join(paths['main'], 'icon.ico'), wx.BITMAP_TYPE_ICO)
+		icon = wx.Icon(os.path.join(paths['main'], 'gitso.ico'), wx.BITMAP_TYPE_ICO)
 		self.SetIcon(icon)
 
 		## Headings ##
@@ -110,7 +110,7 @@ class AboutWindow(wx.Frame):
 		text3.SetFont(font3)
 		url = wx.HyperlinkCtrl(self, -1, "github.com/AustP/Gitso", "https://github.com/AustP/Gitso")
 		
-		data = open(os.path.join(paths['main'], 'icon.png'), "rb").read()
+		data = open(os.path.join(paths['main'], 'gitso.png'), "rb").read()
 		stream = cStringIO.StringIO(data)
 		img = wx.ImageFromStream(stream)
 		img.Rescale(150, 150)

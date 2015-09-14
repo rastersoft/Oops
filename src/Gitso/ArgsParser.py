@@ -51,12 +51,15 @@ class ArgsParser:
 		if re.match('(?:open|free|net)bsd|linux',sys.platform):
 			self.paths['main'] = os.path.join(sys.path[0], '..', 'share', 'gitso')
 			self.paths['copyright'] = os.path.join(sys.path[0], '..', 'share', 'doc', 'gitso', 'COPYING')
+			self.paths['locales'] = os.path.join(sys.path[0], '..','share','locale')
 		elif sys.platform == "darwin":
 			self.paths['main'] = sys.path[0]
-			self.paths['copyright'] = os.path.join(sys.path[0], 'COPYING')
+			self.paths['copyright'] = os.path.join(sys.path[0], 'share', 'doc', 'gitso', 'COPYING')
+			self.paths['locales'] = os.path.join(sys.path[0], 'locale')
 		else:
 			self.paths['main'] = os.path.join(sys.path[0], '..')
 			self.paths['copyright'] = os.path.join(sys.path[0], '..', 'COPYING')
+			self.paths['locales'] = os.path.join(sys.path[0],'..', 'locale')
 		
 		#for i in range(1, len(sys.argv)):
 		i = 1

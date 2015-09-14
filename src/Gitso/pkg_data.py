@@ -5,6 +5,7 @@ Created on 14 de sept. de 2015
 '''
 
 import pkg_resources
+import sys
 
 def get_version():
     
