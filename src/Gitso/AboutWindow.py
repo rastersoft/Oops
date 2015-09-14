@@ -1,6 +1,6 @@
 import wx
 import os, os.path, sys, cStringIO
-
+from gettext import gettext as _
 
 """
 Gisto - Gitso is to support others
@@ -100,8 +100,8 @@ class AboutWindow(wx.Frame):
 		font1 = wx.Font(24, wx.NORMAL, wx.NORMAL, wx.BOLD)
 		text1.SetFont(font1)
 
-		text2 = wx.StaticText(self, -1, "Gitso is to Support Others")
-		text3 = wx.StaticText(self, -1, "Version 0.6.3")
+		text2 = wx.StaticText(self, -1, _("Gitso is to Support Others"))
+		text3 = wx.StaticText(self, -1, _("Version 0.6.3"))
 		font2 = wx.Font(16, wx.NORMAL, wx.NORMAL, wx.NORMAL)
 		font3 = wx.Font(12, wx.NORMAL, wx.NORMAL, wx.NORMAL)
 		text2.SetFont(font2)
@@ -142,8 +142,8 @@ class AboutWindow(wx.Frame):
 		license_page = LicensePage(nb, paths)
 		info_page = InfoPage(nb)
 		
-		nb.AddPage(info_page, "Authors")
-		nb.AddPage(license_page, "License")
+		nb.AddPage(info_page, _("Authors"))
+		nb.AddPage(license_page, _("License"))
 		
 		tab_sizer = wx.BoxSizer(wx.HORIZONTAL);
 		tab_sizer.Add(nb, 1, wx.EXPAND | wx.ALL, 10 );

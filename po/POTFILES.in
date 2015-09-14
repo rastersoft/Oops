@@ -1,0 +1,7 @@
+./src/Gitso.py
+./src/Gitso/AboutWindow.py
+./src/Gitso/ArgsParser.py
+./src/Gitso/Processes.py
+./src/Gitso/GitsoThread.py
+./src/Gitso/ConnectionWindow.py
+./src/Gitso/NATPMP.py

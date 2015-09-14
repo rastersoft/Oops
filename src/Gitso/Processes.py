@@ -25,6 +25,7 @@ along with Gitso.  If not, see <http://www.gnu.org/licenses/>.
 
 import wx
 import os, sys, signal, os.path, re
+from gettext import gettext as _
 
 class Processes:
 	def __init__(self, window, paths):
@@ -47,7 +48,7 @@ class Processes:
 		elif sys.platform == 'win32':
 			import subprocess
                         self.returnPID = subprocess.Popen(['WinVNC.exe'])
-			print "Launched WinVNC.exe, waiting to run -connect command..."
+			print _("Launched WinVNC.exe, waiting to run -connect command...")
 			import time
 			time.sleep(3)
 			
@@ -56,7 +57,7 @@ class Processes:
 			else:
 				subprocess.Popen(['WinVNC.exe', '-connect', '%s' % host])
 		else:
-			print 'Platform not detected'
+			print _('Platform not detected')
 		return self.returnPID
 	
 	def giveSupport(self, port):
@@ -79,7 +80,7 @@ class Processes:
 			else:
 				self.returnPID = subprocess.Popen(['vncviewer.exe', '-listen', port])
 		else:
-			print 'Platform not detected'
+			print _('Platform not detected')
 		
 		return self.returnPID
 
@@ -91,7 +92,7 @@ class Processes:
 		@author: Aaron Gerber
 		"""
 		if self.returnPID != 0:
-			print "Processes.KillPID(" + str(self.returnPID) + ")"
+			print _("Processes.KillPID(%s)") % str(self.returnPID)
 			if sys.platform == 'win32':
 				import win32api
 				PROCESS_TERMINATE = 1

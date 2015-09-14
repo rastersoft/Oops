@@ -50,12 +50,26 @@ if sys.platform == 'darwin':
 		sys.path.append('/System/Library/Frameworks/Python.framework/Versions/2.6/Extras/lib/python/wx-2.8-mac-unicode')
 
 import wx
-import ConnectionWindow, ArgsParser
+import os
+import Gitso.ConnectionWindow, Gitso.ArgsParser
+import gettext
+import locale
 
+if sys.platform.startswith('win'):
+	if os.getenv('LANG') is None:
+		lang, enc = locale.getdefaultlocale()
+		os.environ['LANG'] = lang
+
+locale.setlocale(locale.LC_ALL, '')
+if sys.platform.startswith('win'):
+	gettext.bindtextdomain('gitso', '.')
+else:
+	gettext.bindtextdomain('gitso', '/usr/share/locale')
+gettext.textdomain('gitso')
 
 if __name__ == "__main__":
 	app = wx.PySimpleApp()
-	args = ArgsParser.ArgsParser()
-	ConnectionWindow.ConnectionWindow(None, -1, "Gitso", args.GetPaths(), args.GetPort())
+	args = Gitso.ArgsParser.ArgsParser()
+	Gitso.ConnectionWindow.ConnectionWindow(None, -1, "Gitso", args.GetPaths(), args.GetPort())
 	app.MainLoop()
 	del app
