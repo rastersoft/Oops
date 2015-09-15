@@ -66,7 +66,7 @@ if __name__ == "__main__":
 	args = Gitso.ArgsParser.ArgsParser()
 	locale.setlocale(locale.LC_ALL, '')
 	if sys.platform.startswith('win'):
-		gettext.bindtextdomain('gitso', '.')
+		gettext.bindtextdomain('gitso', os.path.join('.','locale'))
 	else:
 		gettext.bindtextdomain('gitso', args.paths['locales'])
 	gettext.textdomain('gitso')
