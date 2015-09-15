@@ -40,8 +40,12 @@ def get_data_files():
 
     if platform == 'unix':
         data_files.append((os.path.join('.','share','icons','hicolor','512x512','apps'),['data/icons/gitso.png']))
-    data_files.append((os.path.join('.','share','gitso'),['data/icons/gitso.ico']))
-    data_files.append((os.path.join('.','share','gitso'),['data/icons/gitso.png']))
+    if platform == "windows":
+        data_files.append((os.path.join('.'),['data/icons/gitso.ico']))
+        data_files.append((os.path.join('.'),['data/icons/gitso.png']))
+    else:
+        data_files.append((os.path.join('.','share','gitso'),['data/icons/gitso.ico']))
+        data_files.append((os.path.join('.','share','gitso'),['data/icons/gitso.png']))
     data_files.append((os.path.join('.','share','doc','gitso'),['COPYING']))
 
     for lang_name in [f for f in os.listdir('locale')]:
