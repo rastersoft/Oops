@@ -58,20 +58,24 @@ def get_data_files():
 
 def compile_translations():
 
-        for pofile in [f for f in os.listdir('po') if f.endswith('.po')]:
-            pofile = os.path.join('po', pofile)
-
-            lang = os.path.basename(pofile)[:-3] # len('.po') == 3
-            modir = os.path.join('locale', lang, 'LC_MESSAGES') # e.g. locale/fr/LC_MESSAGES/
-            mofile = os.path.join(modir, 'gitso.mo') # e.g. locale/fr/LC_MESSAGES/devede_ng.mo
-
-            # create an architecture for these locales
-            if not os.path.isdir(modir):
-                os.makedirs(modir)
-
-            if not os.path.isfile(mofile) or (has_dep and dep_util.newer(pofile, mofile)):
-                # msgfmt.make(pofile, mofile)
-                os.system("msgfmt \"" + pofile + "\" -o \"" + mofile + "\"")
+    try:
+        if (0 == os.system("msgfmt -h")):
+            for pofile in [f for f in os.listdir('po') if f.endswith('.po')]:
+                pofile = os.path.join('po', pofile)
+    
+                lang = os.path.basename(pofile)[:-3] # len('.po') == 3
+                modir = os.path.join('locale', lang, 'LC_MESSAGES') # e.g. locale/fr/LC_MESSAGES/
+                mofile = os.path.join(modir, 'gitso.mo') # e.g. locale/fr/LC_MESSAGES/devede_ng.mo
+    
+                # create an architecture for these locales
+                if not os.path.isdir(modir):
+                    os.makedirs(modir)
+    
+                if not os.path.isfile(mofile) or (has_dep and dep_util.newer(pofile, mofile)):
+                    # msgfmt.make(pofile, mofile)
+                    os.system("msgfmt \"" + pofile + "\" -o \"" + mofile + "\"")
+    except:
+        pass
 
 compile_translations()
 
