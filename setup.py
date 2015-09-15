@@ -90,6 +90,6 @@ params_setup['data_files'] = get_data_files()
 params_setup['scripts']=['src/gitso.py']
 
 if platform == 'windows':
-    params_setup['windows'] = [{"script":"Gitso.py", "icon_resources":[(1,"icon.ico")]}]
+    params_setup['windows'] = [{"script":"Gitso.py", "icon_resources":[(1,"data/icons/gitso.ico")]}]
 
 setup(**params_setup)
