@@ -47,7 +47,7 @@ class Processes:
 			time.sleep(3)
 		elif sys.platform == 'win32':
 			import subprocess
-                        self.returnPID = subprocess.Popen(['WinVNC.exe'])
+			self.returnPID = subprocess.Popen(['WinVNC.exe'])
 			print _("Launched WinVNC.exe, waiting to run -connect command...")
 			import time
 			time.sleep(3)
@@ -69,10 +69,13 @@ class Processes:
 			# These are the options for low-res connections.
 			# In the future, I'd like to support cross-platform low-res options.
 			# What aboot a checkbox in the gui
+
+			# The port must be passed as port-5500 because vncviewer expects to receive the display number, not the port
+			# and will wait at port 5500 + display number
 			if self.paths['low-colors'] == False:
-				self.returnPID = os.spawnlp(os.P_NOWAIT, 'vncviewer', 'vncviewer', '-listen', port)
+				self.returnPID = os.spawnlp(os.P_NOWAIT, 'vncviewer', 'vncviewer', '-listen', port - 5500)
 			else:
-				self.returnPID = os.spawnlp(os.P_NOWAIT, 'vncviewer', 'vncviewer', '-bgr233', '-listen', port)
+				self.returnPID = os.spawnlp(os.P_NOWAIT, 'vncviewer', 'vncviewer', '-bgr233', '-listen', port - 5500)
 		elif sys.platform == 'win32':
 			import subprocess
 			if self.paths['mode'] == 'dev':
