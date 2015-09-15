@@ -92,7 +92,7 @@ params_setup['license']='GPLv3'
 params_setup['data_files'] = get_data_files()
 
 if platform == 'windows':
-    params_setup['windows'] = [{"script":"gitso.py", "icon_resources":[(1,"data/icons/gitso.ico")]}]
+    params_setup['windows'] = [{"script":"src/gitso.py", "icon_resources":[(1,"data/icons/gitso.ico")]}]
     params_setup['py_modules'] = ['src/Gitso']
 else:
     params_setup['packages']=['Gitso']
