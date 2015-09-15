@@ -19,7 +19,7 @@
 ;--------------------------------
 
 !define VERSION "0.7.0" 
-Name "Gitso 0.7.0.0"
+Name "Gitso ${VERSION}"
 Icon "./data/icons/gitso.ico"
 UninstallIcon "./data/icons/gitso.ico"
 OutFile "gitso-install.exe"
@@ -31,7 +31,7 @@ InstallDirRegKey HKLM "Software\Gitso" "Install_Dir"
 
 ;--------------------------------
 ; Version Information
-  VIProductVersion ${VERSION}
+  VIProductVersion ${VERSION}.0
   VIAddVersionKey "ProductName" "Gitso"
   VIAddVersionKey "Comments" "Gitso is to support others"
   VIAddVersionKey "CompanyName" "https://github.com/rastersoft/Gitso"
