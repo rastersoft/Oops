@@ -60,6 +60,7 @@ def compile_translations():
 
     try:
         if (0 == os.system("msgfmt -h")):
+            os.system("rm -rf locale")
             for pofile in [f for f in os.listdir('po') if f.endswith('.po')]:
                 pofile = os.path.join('po', pofile)
     
@@ -88,12 +89,14 @@ params_setup['version'] = '0.7'
 params_setup['description']='Gitso is to support others'
 params_setup['long_description']="A program to simplify using reverse VNC"
 params_setup['license']='GPLv3'
-params_setup['packages']=['Gitso']
-params_setup['package_dir'] = {"Gitso" : "src/Gitso"}
 params_setup['data_files'] = get_data_files()
-params_setup['scripts']=['src/gitso.py']
 
 if platform == 'windows':
-    params_setup['windows'] = [{"script":"Gitso.py", "icon_resources":[(1,"data/icons/gitso.ico")]}]
+    params_setup['windows'] = [{"script":"gitso.py", "icon_resources":[(1,"data/icons/gitso.ico")]}]
+    params_setup['py_modules'] = ['src/Gitso']
+else:
+    params_setup['packages']=['Gitso']
+    params_setup['package_dir'] = {"Gitso" : "src/Gitso"}
+    params_setup['scripts']=['src/gitso.py']
 
 setup(**params_setup)
