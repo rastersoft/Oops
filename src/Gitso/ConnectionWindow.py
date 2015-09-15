@@ -65,14 +65,14 @@ class ConnectionWindow(wx.Frame):
 		# Disable until 0.7 release
 		self.enablePMP = False
 		
-		if re.match('(?:open|free|net)bsd|linux',sys.platform):
-			wsize = (350,260)
-			xval1 = 155
-			xval2 = 250
-		else:
-			wsize = (350,175)
-			xval1 = 180
-			xval2 = 265
+		#if re.match('(?:open|free|net)bsd|linux',sys.platform):
+		wsize = (350,260)
+		xval1 = 155
+		xval2 = 250
+# 		else:
+# 			wsize = (350,175)
+# 			xval1 = 180
+# 			xval2 = 265
 
 		wx.Frame.__init__(self, parent, wx.ID_ANY, title, size=wsize, style=wx.DEFAULT_FRAME_STYLE & ~(wx.FRAME_SHAPED | wx.RESIZE_BORDER | wx.RESIZE_BOX | wx.MAXIMIZE_BOX))
 		self.Bind(wx.EVT_CLOSE, self.OnCloseWindow)
