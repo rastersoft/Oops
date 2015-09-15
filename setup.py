@@ -93,7 +93,7 @@ params_setup['data_files'] = get_data_files()
 
 if platform == 'windows':
     params_setup['windows'] = [{"script":"src/gitso.py", "icon_resources":[(1,"data/icons/gitso.ico")]}]
-    params_setup['py_modules'] = ['src/Gitso']
+    params_setup['py_modules'] = ['src/Gitso/AboutWindow.py','src/Gitso/ArgsParser.py','src/Gitso/ConnectionWindow.py','src/Gitso/GitsoThread.py','src/Gitso/NATPMP.py','src/Gitso/pkg_data.py','src/Gitso/Processes.py']
 else:
     params_setup['packages']=['Gitso']
     params_setup['package_dir'] = {"Gitso" : "src/Gitso"}
