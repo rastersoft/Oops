@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-15 14:32+0200\n"
+"POT-Creation-Date: 2015-09-15 14:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -165,6 +165,11 @@ msgstr ""
 
 #: ../src/Gitso/ConnectionWindow.py:108
 msgid "Use NAT-PMP"
+msgstr ""
+
+#. Checkbox for low color
+#: ../src/Gitso/ConnectionWindow.py:112
+msgid "Use low colors"
 msgstr ""
 
 #. Get Help

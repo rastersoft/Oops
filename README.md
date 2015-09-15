@@ -4,11 +4,15 @@ Gitso is a frontend to reverse VNC connections. It is meant to be a simple two-s
 
 Original Project is kept at: https://code.google.com/p/gitso/
 
-Few changes that I've made:
+Few changes made by AustP:
 
 + Minimization now minimizes to the task tray
 + When using the command line switch --listen, Gitso starts minimized
-+ Can now specify which port to listen on. --listen {PORT}
+
+Changes made by Rastersoft:
+
++ Internationalization and localization support
++ Fixed the interface in Linux (some elements where put outside the window)
 
 ##Building Gitso
 ####Windows

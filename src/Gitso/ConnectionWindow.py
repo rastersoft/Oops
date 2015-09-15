@@ -109,7 +109,7 @@ class ConnectionWindow(wx.Frame):
 				self.cb1.Enable(False)
 
 		# Checkbox for low color
-		self.cb2 = wx.CheckBox(self, -1, 'Use low colors', (40, 104))
+		self.cb2 = wx.CheckBox(self, -1, _('Use low colors'), (40, 104))
 		self.cb2.Set3StateValue(False)
 		self.cb2.SetValue(self.paths['low-colors']) # Use value of --low-colors from command line
 		self.cb2.Enable(False)
