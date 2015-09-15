@@ -60,28 +60,26 @@ class Processes:
 			print _('Platform not detected')
 		return self.returnPID
 	
-	def giveSupport(self, port):
+	def giveSupport(self):
 		if sys.platform == 'darwin':
 			vncviewer = '%scotvnc.app/Contents/MacOS/cotvnc' % self.paths['resources']
-			self.returnPID = os.spawnlp(os.P_NOWAIT, vncviewer, vncviewer, '--listen', port)
+			self.returnPID = os.spawnlp(os.P_NOWAIT, vncviewer, vncviewer, '--listen')
 		elif re.match('(?:open|free|net)bsd|linux',sys.platform):
 			
 			# These are the options for low-res connections.
 			# In the future, I'd like to support cross-platform low-res options.
 			# What aboot a checkbox in the gui
 
-			# The port must be passed as port-5500 because vncviewer expects to receive the display number, not the port
-			# and will wait at port 5500 + display number
 			if self.paths['low-colors'] == False:
-				self.returnPID = os.spawnlp(os.P_NOWAIT, 'vncviewer', 'vncviewer', '-listen', port - 5500)
+				self.returnPID = os.spawnlp(os.P_NOWAIT, 'vncviewer', 'vncviewer', '-listen')
 			else:
-				self.returnPID = os.spawnlp(os.P_NOWAIT, 'vncviewer', 'vncviewer', '-bgr233', '-listen', port - 5500)
+				self.returnPID = os.spawnlp(os.P_NOWAIT, 'vncviewer', 'vncviewer', '-bgr233', '-listen')
 		elif sys.platform == 'win32':
 			import subprocess
 			if self.paths['mode'] == 'dev':
-				self.returnPID = subprocess.Popen(['%svncviewer.exe' % self.paths['resources'], '-listen', port])
+				self.returnPID = subprocess.Popen(['%svncviewer.exe' % self.paths['resources'], '-listen'])
 			else:
-				self.returnPID = subprocess.Popen(['vncviewer.exe', '-listen', port])
+				self.returnPID = subprocess.Popen(['vncviewer.exe', '-listen'])
 		else:
 			print _('Platform not detected')
 		

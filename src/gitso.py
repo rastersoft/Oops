@@ -71,6 +71,6 @@ if __name__ == "__main__":
 		gettext.bindtextdomain('gitso', args.paths['locales'])
 	gettext.textdomain('gitso')
 
-	Gitso.ConnectionWindow.ConnectionWindow(None, -1, "Gitso", args.GetPaths(), args.GetPort())
+	Gitso.ConnectionWindow.ConnectionWindow(None, -1, "Gitso", args.GetPaths())
 	app.MainLoop()
 	del app

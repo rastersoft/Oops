@@ -49,7 +49,7 @@ class ConnectionWindow(wx.Frame):
 	@author: Derek Buranen
 	@author: Aaron Gerber
 	"""
-	def __init__(self, parent, id, title, paths, port):
+	def __init__(self, parent, id, title, paths):
 		"""
 		Setup Application Window
 		
@@ -59,7 +59,6 @@ class ConnectionWindow(wx.Frame):
 		"""
 		self.ToggleValue = 0
 		self.paths = paths
-		self.port = port
 		self.thread = None
 		self.threadLock = thread.allocate_lock()
 		
@@ -378,7 +377,7 @@ class ConnectionWindow(wx.Frame):
 	def createThread(self, host=""):
 		self.paths['low-colors'] = self.cb2.GetValue() # Set low-colors to value of checkbox
 		self.KillPID(False)
-		self.thread = Gitso.GitsoThread.GitsoThread(self, self.paths, self.port)
+		self.thread = Gitso.GitsoThread.GitsoThread(self, self.paths)
 		self.thread.setHost(host)
 		self.thread.start()
 

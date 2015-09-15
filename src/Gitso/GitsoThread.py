@@ -32,10 +32,9 @@ if sys.platform == 'darwin' or re.match('(?:open|free|net)bsd|linux',sys.platfor
 	import NATPMP
 
 class GitsoThread(threading.Thread):
-	def __init__(self, window, paths, port):
+	def __init__(self, window, paths):
 		self.window  = window
 		self.paths   = paths
-		self.port    = port
 		self.host    = ""
 		self.error   = False
 		self.pid     = 0
@@ -67,7 +66,7 @@ class GitsoThread(threading.Thread):
 					if self.window.cb1.GetValue() == True:
 						self.NATPMP('request')
 			
-			self.pid = self.process.giveSupport(self.port)
+			self.pid = self.process.giveSupport()
 			time.sleep(.5)
 			if self.checkStatus():
 				self.window.setMessage(_("Server running."), True)
