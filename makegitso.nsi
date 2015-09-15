@@ -19,7 +19,7 @@
 ;--------------------------------
 
 !define VERSION "0.7.0" 
-Name "Gitso ${VERSION}"
+Name "Gitso ${VERSION}.0"
 Icon "./data/icons/gitso.ico"
 UninstallIcon "./data/icons/gitso.ico"
 OutFile "gitso-install.exe"
