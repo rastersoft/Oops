@@ -18,7 +18,8 @@ else:
     platform = 'unknown'
 
 has_dep = False
-if 'linux' == sys.platform:
+
+if re.match('linux',sys.platform):
     try:
         from distutils import dep_util
         has_dep = True
@@ -40,6 +41,7 @@ def get_data_files():
 
     if platform == 'unix':
         data_files.append((os.path.join('.','share','icons','hicolor','512x512','apps'),['data/icons/gitso.png']))
+        data_files.append((os.path.join('.','share','applications'),['data/gitso.desktop']))
     if platform == "windows":
         data_files.append((os.path.join('.'),['data/icons/gitso.ico']))
         data_files.append((os.path.join('.'),['data/icons/gitso.png']))
@@ -48,22 +50,24 @@ def get_data_files():
         data_files.append((os.path.join('.','share','gitso'),['data/icons/gitso.png']))
     data_files.append((os.path.join('.','share','doc','gitso'),['COPYING']))
 
-    for lang_name in [f for f in os.listdir('locale')]:
-        mofile = os.path.join('locale', lang_name,'LC_MESSAGES','gitso.mo')
-        # translations must be always in /usr/share because Gtk.builder only search there. If someone knows how to fix this...
-        if platform == 'windows':
-            target = os.path.join('.','locale', lang_name, 'LC_MESSAGES') # share/locale/fr/LC_MESSAGES/
-        else:
-            target = os.path.join('.','share', 'locale', lang_name, 'LC_MESSAGES') # share/locale/fr/LC_MESSAGES/
-        data_files.append((target, [mofile]))
-
+    try:
+        for lang_name in [f for f in os.listdir('locale')]:
+            mofile = os.path.join('locale', lang_name,'LC_MESSAGES','gitso.mo')
+            # translations must be always in /usr/share because Gtk.builder only search there. If someone knows how to fix this...
+            if platform == 'windows':
+                target = os.path.join('.','locale', lang_name, 'LC_MESSAGES') # share/locale/fr/LC_MESSAGES/
+            else:
+                target = os.path.join('.','share', 'locale', lang_name, 'LC_MESSAGES') # share/locale/fr/LC_MESSAGES/
+            data_files.append((target, [mofile]))
+    except:
+        pass
     return data_files
 
 
 def compile_translations():
 
     try:
-        if (0 == os.system("msgfmt -h")):
+        if (0 == os.system("msgfmt -h > /dev/null")) and os.path.exists('po'):
             os.system("rm -rf locale")
             for pofile in [f for f in os.listdir('po') if f.endswith('.po')]:
                 pofile = os.path.join('po', pofile)

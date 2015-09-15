@@ -47,14 +47,9 @@ Gitso requires the following files so make sure to install them:
 1. yum install subversion
 2. yum install rpmdevtools
 
-**Ubuntu, Fedora, OpenSUSE Users**
+**Debian/Ubuntu packages**
 
-1. Update hosts.txt to have preset options for the client. Hosts are comma separated and optional.
-2. Run: ./makegitso.sh [--source, --opensuse, --fedora]
+Install *python-stdeb* to allow pysetup to create DEB packages, and run *makegitso_debian.sh*.
 
 ##Disclaimer
-I really have no desire to maintain this project, as it's not mine to begin with.
-I was looking for something like Gitso but it didn't quite have what I wanted.
-After making my changes I thought I might as well put this up on GitHub for others who wanted
-something similar. So if you have issues, you're better off forking the project and fixing
-them yourself.
+Gitso is NOT my project, but other's. I'm creating a fork, but still don't have a name for it.
