@@ -1,6 +1,6 @@
 import wx
 import os, os.path, sys, cStringIO
-
+from gettext import gettext as _
 
 """
 Gisto - Gitso is to support others
@@ -24,6 +24,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Gitso.  If not, see <http://www.gnu.org/licenses/>.
 """
+
+import pkg_data
 
 class InfoPage(wx.Panel):
 	def __init__(self, parent):
@@ -92,7 +94,7 @@ class AboutWindow(wx.Frame):
 		if sys.platform == 'win32':
 			self.SetBackgroundColour(wx.Colour(236,233,216))
 
-		icon = wx.Icon(os.path.join(paths['main'], 'icon.ico'), wx.BITMAP_TYPE_ICO)
+		icon = wx.Icon(os.path.join(paths['main'], 'gitso.ico'), wx.BITMAP_TYPE_ICO)
 		self.SetIcon(icon)
 
 		## Headings ##
@@ -100,15 +102,15 @@ class AboutWindow(wx.Frame):
 		font1 = wx.Font(24, wx.NORMAL, wx.NORMAL, wx.BOLD)
 		text1.SetFont(font1)
 
-		text2 = wx.StaticText(self, -1, "Gitso is to Support Others")
-		text3 = wx.StaticText(self, -1, "Version 0.6.3")
+		text2 = wx.StaticText(self, -1, _("Gitso is to Support Others"))
+		text3 = wx.StaticText(self, -1, _("Version %s") % pkg_data.get_version())
 		font2 = wx.Font(16, wx.NORMAL, wx.NORMAL, wx.NORMAL)
 		font3 = wx.Font(12, wx.NORMAL, wx.NORMAL, wx.NORMAL)
 		text2.SetFont(font2)
 		text3.SetFont(font3)
 		url = wx.HyperlinkCtrl(self, -1, "github.com/AustP/Gitso", "https://github.com/AustP/Gitso")
 		
-		data = open(os.path.join(paths['main'], 'icon.png'), "rb").read()
+		data = open(os.path.join(paths['main'], 'gitso.png'), "rb").read()
 		stream = cStringIO.StringIO(data)
 		img = wx.ImageFromStream(stream)
 		img.Rescale(150, 150)
@@ -142,8 +144,8 @@ class AboutWindow(wx.Frame):
 		license_page = LicensePage(nb, paths)
 		info_page = InfoPage(nb)
 		
-		nb.AddPage(info_page, "Authors")
-		nb.AddPage(license_page, "License")
+		nb.AddPage(info_page, _("Authors"))
+		nb.AddPage(license_page, _("License"))
 		
 		tab_sizer = wx.BoxSizer(wx.HORIZONTAL);
 		tab_sizer.Add(nb, 1, wx.EXPAND | wx.ALL, 10 );

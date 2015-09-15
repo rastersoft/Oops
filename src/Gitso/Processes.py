@@ -25,6 +25,7 @@ along with Gitso.  If not, see <http://www.gnu.org/licenses/>.
 
 import wx
 import os, sys, signal, os.path, re
+from gettext import gettext as _
 
 class Processes:
 	def __init__(self, window, paths):
@@ -46,8 +47,8 @@ class Processes:
 			time.sleep(3)
 		elif sys.platform == 'win32':
 			import subprocess
-                        self.returnPID = subprocess.Popen(['WinVNC.exe'])
-			print "Launched WinVNC.exe, waiting to run -connect command..."
+			self.returnPID = subprocess.Popen(['WinVNC.exe'])
+			print _("Launched WinVNC.exe, waiting to run -connect command...")
 			import time
 			time.sleep(3)
 			
@@ -56,30 +57,31 @@ class Processes:
 			else:
 				subprocess.Popen(['WinVNC.exe', '-connect', '%s' % host])
 		else:
-			print 'Platform not detected'
+			print _('Platform not detected')
 		return self.returnPID
 	
-	def giveSupport(self, port):
+	def giveSupport(self):
 		if sys.platform == 'darwin':
 			vncviewer = '%scotvnc.app/Contents/MacOS/cotvnc' % self.paths['resources']
-			self.returnPID = os.spawnlp(os.P_NOWAIT, vncviewer, vncviewer, '--listen', port)
+			self.returnPID = os.spawnlp(os.P_NOWAIT, vncviewer, vncviewer, '--listen')
 		elif re.match('(?:open|free|net)bsd|linux',sys.platform):
 			
 			# These are the options for low-res connections.
 			# In the future, I'd like to support cross-platform low-res options.
 			# What aboot a checkbox in the gui
+
 			if self.paths['low-colors'] == False:
-				self.returnPID = os.spawnlp(os.P_NOWAIT, 'vncviewer', 'vncviewer', '-listen', port)
+				self.returnPID = os.spawnlp(os.P_NOWAIT, 'vncviewer', 'vncviewer', '-listen')
 			else:
-				self.returnPID = os.spawnlp(os.P_NOWAIT, 'vncviewer', 'vncviewer', '-bgr233', '-listen', port)
+				self.returnPID = os.spawnlp(os.P_NOWAIT, 'vncviewer', 'vncviewer', '-bgr233', '-listen')
 		elif sys.platform == 'win32':
 			import subprocess
 			if self.paths['mode'] == 'dev':
-				self.returnPID = subprocess.Popen(['%svncviewer.exe' % self.paths['resources'], '-listen', port])
+				self.returnPID = subprocess.Popen(['%svncviewer.exe' % self.paths['resources'], '-listen'])
 			else:
-				self.returnPID = subprocess.Popen(['vncviewer.exe', '-listen', port])
+				self.returnPID = subprocess.Popen(['vncviewer.exe', '-listen'])
 		else:
-			print 'Platform not detected'
+			print _('Platform not detected')
 		
 		return self.returnPID
 
@@ -91,7 +93,7 @@ class Processes:
 		@author: Aaron Gerber
 		"""
 		if self.returnPID != 0:
-			print "Processes.KillPID(" + str(self.returnPID) + ")"
+			print _("Processes.KillPID(%s)") % str(self.returnPID)
 			if sys.platform == 'win32':
 				import win32api
 				PROCESS_TERMINATE = 1

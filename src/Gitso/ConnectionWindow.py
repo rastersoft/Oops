@@ -25,7 +25,8 @@ along with Gitso.  If not, see <http://www.gnu.org/licenses/>.
 
 import wx
 import os, sys, signal, os.path, time, thread, re
-import AboutWindow, GitsoThread
+import Gitso.AboutWindow, Gitso.GitsoThread
+from gettext import gettext as _
 
 class GitsoTaskBarIcon(wx.TaskBarIcon):
 	def __init__(self, icon, frame):
@@ -35,8 +36,8 @@ class GitsoTaskBarIcon(wx.TaskBarIcon):
 		
 	def CreatePopupMenu(self):
 		self.menu = wx.Menu()
-		self.menu.Append(20, "Restore Gitso")
-		self.menu.Append(21, "Quit Gitso")
+		self.menu.Append(20, _("Restore Gitso"))
+		self.menu.Append(21, _("Quit Gitso"))
 		wx.EVT_MENU(self.menu, 20, self.frame.RestoreWindow)
 		wx.EVT_MENU(self.menu, 21, self.frame.OnCloseWindow)
 		return self.menu
@@ -48,7 +49,7 @@ class ConnectionWindow(wx.Frame):
 	@author: Derek Buranen
 	@author: Aaron Gerber
 	"""
-	def __init__(self, parent, id, title, paths, port):
+	def __init__(self, parent, id, title, paths):
 		"""
 		Setup Application Window
 		
@@ -58,7 +59,6 @@ class ConnectionWindow(wx.Frame):
 		"""
 		self.ToggleValue = 0
 		self.paths = paths
-		self.port = port
 		self.thread = None
 		self.threadLock = thread.allocate_lock()
 		
@@ -66,41 +66,37 @@ class ConnectionWindow(wx.Frame):
 		self.enablePMP = False
 		
 		if re.match('(?:open|free|net)bsd|linux',sys.platform):
-			width = 165
-			height = 350
+			wsize = (350,260)
 			xval1 = 155
 			xval2 = 250
 		else:
-			height = 350
-			width = 175
+			wsize = (350,175)
 			xval1 = 180
 			xval2 = 265
-		
-		wx.Frame.__init__(self, parent, wx.ID_ANY, title, size=(height,width), style=wx.DEFAULT_FRAME_STYLE & ~(wx.FRAME_SHAPED | wx.RESIZE_BORDER | wx.RESIZE_BOX | wx.MAXIMIZE_BOX))
+
+		wx.Frame.__init__(self, parent, wx.ID_ANY, title, size=wsize, style=wx.DEFAULT_FRAME_STYLE & ~(wx.FRAME_SHAPED | wx.RESIZE_BORDER | wx.RESIZE_BOX | wx.MAXIMIZE_BOX))
 		self.Bind(wx.EVT_CLOSE, self.OnCloseWindow)
 		self.Bind(wx.EVT_ICONIZE, self.OnIconizeWindow)
 		
+		icon = wx.Icon(os.path.join(self.paths['main'], 'gitso.ico'), wx.BITMAP_TYPE_ICO)
 		if sys.platform == 'win32':
-			icon = wx.Icon(os.path.join(self.paths['main'], 'icon.ico'), wx.BITMAP_TYPE_ICO)
 			self.SetBackgroundColour(wx.Colour(236,233,216))
-		else:
-			icon = wx.Icon(os.path.join(self.paths['main'], 'icon.ico'), wx.BITMAP_TYPE_ICO)
-			
+
 		self.SetIcon(icon)
 		self.TrayIcon = GitsoTaskBarIcon(icon, self)
 		wx.EVT_TASKBAR_LEFT_UP(self.TrayIcon, self.RestoreWindow)
 		
 		#Buttons
-		self.connectButton = wx.Button(self, 10, "Commencer", wx.Point(xval1, 81))
+		self.connectButton = wx.Button(self, 10, _("Start"), wx.Point(xval1, 144))
 		self.connectButton.SetDefault()
 		wx.EVT_BUTTON(self, 10, self.ConnectSupport)
-		self.stopButton = wx.Button(self, wx.ID_STOP, "", wx.Point(xval2, 81))
+		self.stopButton = wx.Button(self, wx.ID_STOP, "", wx.Point(xval2, 144))
 		self.stopButton.Enable(False)
 		wx.EVT_BUTTON(self, wx.ID_STOP, self.KillPID)
 		
 		# Radio Boxes
-		self.rb1 = wx.RadioButton(self, -1, 'Se faire aider', (10, 15), style=wx.RB_GROUP)
-		self.rb2 = wx.RadioButton(self, -1, 'Aider', (10, 48))
+		self.rb1 = wx.RadioButton(self, -1, _('Get Help'), (10, 15), style=wx.RB_GROUP)
+		self.rb2 = wx.RadioButton(self, -1, _('Give Support'), (10, 80))
 		self.rb1.SetValue(True)
 		
 		self.Bind(wx.EVT_RADIOBUTTON, self.RadioToggle, id=self.rb1.GetId())
@@ -109,11 +105,11 @@ class ConnectionWindow(wx.Frame):
 		# checkbox for natpmp
 		if sys.platform == 'darwin' or re.match('(?:open|free|net)bsd|linux',sys.platform):
 			if self.enablePMP:
-				self.cb1 = wx.CheckBox(self, -1, 'Utiliser NAT-PMP', (130, 48))
+				self.cb1 = wx.CheckBox(self, -1, _('Use NAT-PMP'), (130, 48))
 				self.cb1.Enable(False)
 
 		# Checkbox for low color
-		self.cb2 = wx.CheckBox(self, -1, 'Utiliser des couleurs pauvres', (10, 81))
+		self.cb2 = wx.CheckBox(self, -1, 'Use low colors', (40, 104))
 		self.cb2.Set3StateValue(False)
 		self.cb2.SetValue(self.paths['low-colors']) # Use value of --low-colors from command line
 		self.cb2.Enable(False)
@@ -123,45 +119,45 @@ class ConnectionWindow(wx.Frame):
 		
 		self.sampleList = self.getHosts(self.sampleList, os.path.join(self.paths['main'], 'hosts.txt'))
 		self.sampleList = self.getHosts(self.sampleList, self.paths['preferences'])
-		self.displayHostBox(self.sampleList, "Entrer l'adresse du support")
+		self.displayHostBox(self.sampleList, _("Enter/Select Support Address"))
 		
 		# Menu      
 		menuBar = wx.MenuBar()
 		fileMenu = wx.Menu()
 		
 		editMenu = wx.Menu()
-		editMenu.Append(11, "&Couper\tCtrl+X", "Couper l'adresse IP")
-		editMenu.Append(12, "&Copier\tCtrl+C", "Copier l'adresse IP")
-		editMenu.Append(wx.ID_PASTE, "&Coller\tCtrl+V", "Coller l'adresse IP")
+		editMenu.Append(11, _("&Cut\tCtrl+X"), _("Cut IP Address"))
+		editMenu.Append(12, _("&Copy\tCtrl+C"), _("Copy IP Address"))
+		editMenu.Append(wx.ID_PASTE, _("&Paste\tCtrl+V"), _("Paste IP Address"))
 		wx.EVT_MENU(self, 11, self.SetClipboard)
 		wx.EVT_MENU(self, 12, self.SetClipboard)
 		wx.EVT_MENU(self, wx.ID_PASTE, self.GetClipboard)
 		
-		fileMenu.Append(13, "&Nettoyer l'historique", "Nettoyer l'historique")
+		fileMenu.Append(13, _("&Clear History"), _("Clear History"))
 		if sys.platform == 'darwin':
-			fileMenu.Append(wx.ID_ABOUT, "&À propos", "À propos de Gitso")
+			fileMenu.Append(wx.ID_ABOUT, _("&About"), _("About Gitso"))
 			wx.EVT_MENU(self, wx.ID_ABOUT, self.ShowAbout)
 		else:       
-			fileMenu.Append(wx.ID_EXIT, "&Quitter\tCtrl+Q", "Quitter Gitso")
+			fileMenu.Append(wx.ID_EXIT, _("&Quit\tCtrl+Q"), _("Quit Gitso"))
 			wx.EVT_MENU(self, wx.ID_EXIT, self.OnCloseWindow)
 		
 		helpMenu = wx.Menu()
-		helpMenu.Append(wx.ID_ABOUT, "&À propos", "À propos de Gitso")
+		helpMenu.Append(wx.ID_ABOUT, _("&About"), _("About Gitso"))
 		wx.EVT_MENU(self, wx.ID_ABOUT, self.ShowAbout)
 		
 		wx.EVT_MENU(self, 13, self.clearHistory)
 		
-		menuBar.Append(fileMenu, "&Fichier")
-		menuBar.Append(editMenu, "&Éditer")
+		menuBar.Append(fileMenu, _("&File"))
+		menuBar.Append(editMenu, _("&Edit"))
 		
 		if re.match('(?:open|free|net)bsd|linux',sys.platform) or sys.platform == 'win32':
-			menuBar.Append(helpMenu, "&Aide")
+			menuBar.Append(helpMenu, _("&Help"))
 		
 		self.SetMenuBar(menuBar)
 		
 		self.statusBar = self.CreateStatusBar()
 		self.statusBar.SetStatusWidths([350])
-		self.setMessage("Absent", False)
+		self.setMessage(_("Idle"), False)
 		
 		self.SetDefaultItem(self.hostField)
 		self.hostField.SetFocus()
@@ -214,8 +210,8 @@ class ConnectionWindow(wx.Frame):
 		@author: Aaron Gerber
 		"""
 		if self.rb1.GetValue(): # Get Help
-			if self.validHost(self.hostField.GetValue().strip()) and self.hostField.GetValue() != "Entrer l'adresse du support":
-				self.setMessage("Conenction...", True)
+			if self.validHost(self.hostField.GetValue().strip()) and self.hostField.GetValue() != _("Enter/Select Support Address"):
+				self.setMessage(_("Connecting..."), True)
 				
 				host = self.hostField.GetValue().strip()
 				
@@ -231,9 +227,9 @@ class ConnectionWindow(wx.Frame):
 				
 				self.createThread(host)
 			else:
-				self.setMessage("Adresse de support invalide", False)
+				self.setMessage(_("Invalid Support Address"), False)
 		else: # Give Suppport
-			self.setMessage("Lancement du serveur ...", True)
+			self.setMessage(_("Starting Server..."), True)
 			self.createThread()
 
 
@@ -244,7 +240,7 @@ class ConnectionWindow(wx.Frame):
 		@author: Derek Buranen
 		@author: Aaron Gerber
 		"""
-		about = AboutWindow.AboutWindow(self, wx.ID_ABOUT, "À propos de Gitso", self.paths)
+		about = Gitso.AboutWindow.AboutWindow(self, wx.ID_ABOUT, _("About Gitso"), self.paths)
 	
 	
 	def clearHistory(self, event):
@@ -308,7 +304,7 @@ class ConnectionWindow(wx.Frame):
 			time.sleep(.5)
 		self.thread = None
 		if showMessage :
-			self.setMessage("Absent.", False)
+			self.setMessage(_("Idle"), False)
 		return
 	
 	def OnCloseWindow(self, evt):
@@ -352,7 +348,7 @@ class ConnectionWindow(wx.Frame):
 			handle.close()
 	
 	def displayHostBox(self, list, text):
-		self.hostField = wx.ComboBox(self, 30, "", wx.Point(105, 12), wx.Size(230, -1), list, wx.CB_DROPDOWN)
+		self.hostField = wx.ComboBox(self, 30, "", wx.Point(40, 40), wx.Size(300, -1), list, wx.CB_DROPDOWN)
 		self.hostField.SetValue(text)
 
 	def setMessage(self, message, status):
@@ -381,7 +377,7 @@ class ConnectionWindow(wx.Frame):
 	def createThread(self, host=""):
 		self.paths['low-colors'] = self.cb2.GetValue() # Set low-colors to value of checkbox
 		self.KillPID(False)
-		self.thread = GitsoThread.GitsoThread(self, self.paths, self.port)
+		self.thread = Gitso.GitsoThread.GitsoThread(self, self.paths)
 		self.thread.setHost(host)
 		self.thread.start()
 

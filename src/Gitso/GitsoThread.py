@@ -25,21 +25,21 @@ along with Gitso.  If not, see <http://www.gnu.org/licenses/>.
 
 import threading, time
 import os, sys, signal, os.path, re
-import Processes
+import Gitso.Processes
+from gettext import gettext as _
 
 if sys.platform == 'darwin' or re.match('(?:open|free|net)bsd|linux',sys.platform):
 	import NATPMP
 
 class GitsoThread(threading.Thread):
-	def __init__(self, window, paths, port):
+	def __init__(self, window, paths):
 		self.window  = window
 		self.paths   = paths
-		self.port    = port
 		self.host    = ""
 		self.error   = False
 		self.pid     = 0
 		self.running = True
-		self.process = Processes.Processes(self.window, paths)
+		self.process = Gitso.Processes.Processes(self.window, paths)
 		threading.Thread.__init__(self)
 		
 		
@@ -54,9 +54,9 @@ class GitsoThread(threading.Thread):
 			self.pid = self.process.getSupport(self.host)
 			time.sleep(.5)
 			if self.checkStatus():
-				self.window.setMessage("Connected.", True)
+				self.window.setMessage(_("Connected."), True)
 			else:
-				self.window.setMessage("Could not connect.", False)
+				self.window.setMessage(_("Could not connect."), False)
 				self.error = True
 		else:
 			# Give Support
@@ -66,21 +66,21 @@ class GitsoThread(threading.Thread):
 					if self.window.cb1.GetValue() == True:
 						self.NATPMP('request')
 			
-			self.pid = self.process.giveSupport(self.port)
+			self.pid = self.process.giveSupport()
 			time.sleep(.5)
 			if self.checkStatus():
-				self.window.setMessage("Server running.", True)
+				self.window.setMessage(_("Server running."), True)
 			else:
-				self.window.setMessage("Could not start server.", False)
+				self.window.setMessage(_("Could not start server."), False)
 				self.error = True
 
-		print "GitsoThread.run(pid: " + str(self.pid) + ") running..."
+		print _("GitsoThread.run(pid: %s) running...") % str(self.pid)
 
 		while(self.running and self.checkStatus()):
 			time.sleep(.2)
 
 		if not self.error:
-			self.window.setMessage("Idle.", False)
+			self.window.setMessage(_("Idle"), False)
 
 		self.kill()
 
@@ -137,7 +137,6 @@ class GitsoThread(threading.Thread):
 				listen = os.popen('netstat -a | find "LISTEN" | find "5500"').readlines()
 		else:
 			print 'Platform not detected'
-		
 		if len(connection) == 0 and len(listen) == 0:
 			return False
 		else:
