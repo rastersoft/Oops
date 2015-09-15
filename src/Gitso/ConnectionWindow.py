@@ -304,7 +304,7 @@ class ConnectionWindow(wx.Frame):
 			time.sleep(.5)
 		self.thread = None
 		if showMessage :
-			self.setMessage(_("Idle."), False)
+			self.setMessage(_("Idle"), False)
 		return
 	
 	def OnCloseWindow(self, evt):

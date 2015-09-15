@@ -94,7 +94,7 @@ class ArgsParser:
 
 			elif sys.argv[i] == '--listen': # --listen
 				if self.paths['connect'] <> "":
-					print _("Error: --connect and --listen can not be used at the same time.")
+					print _("Error: --connect and --listen can not be used at the same time")
 					self.HelpMenu()
 
 				i = i + 1
@@ -112,17 +112,17 @@ class ArgsParser:
 			elif sys.argv[i] == '--connect': # --connect
 				i = i + 1
 				if i >= len(sys.argv):
-					print _("Error: No IP or domain name given.")
+					print _("Error: No IP or domain name given")
 					self.HelpMenu()
 
 				if self.paths['listen']:
-					print _("Error: --connect and --listen can not be used at the same time.")
+					print _("Error: --connect and --listen can not be used at the same time")
 					self.HelpMenu()
 				
 				if sys.argv[i][0] + sys.argv[i][1] <> "--":
 					self.paths['connect'] = sys.argv[i]
 				else:
-					print _("Error: '%s' is not a valid host with '--connect'.") % sys.argv[i]
+					print _("Error: '%s' is not a valid host with '--connect'") % sys.argv[i]
 					self.HelpMenu()
 
 			elif sys.argv[i] == '--low-colors': # --low-colors
@@ -131,17 +131,17 @@ class ArgsParser:
 			elif sys.argv[i] == '--list': # --list
 				i = i + 1
 				if i >= len(sys.argv):
-					print _("Error: No List file given.")
+					print _("Error: No List file given")
 					self.HelpMenu()
 				
 				if sys.argv[i][0] + sys.argv[i][1] <> "--":
 					self.paths['list'] = self.getHosts(sys.argv[i])
 				else:
-					print _("Error: '%s' is not a valid list with '--list'.") % sys.argv[i]
+					print _("Error: '%s' is not a valid list with '--list'") % sys.argv[i]
 					self.HelpMenu()
 
 			else:
-				print _("Error: '%s' is not a valid argument.") % sys.argv[i]
+				print _("Error: '%s' is not a valid argument") % sys.argv[i]
 				self.HelpMenu()
 
 			i = i + 1
@@ -160,13 +160,13 @@ class ArgsParser:
 	def HelpMenu(self):
 		print "Usage: " + os.path.basename(sys.argv[0]) + " [OPTION]"
 		print "\tOPTIONS"
-		print _("\t--dev\t\tSet self.paths for development.")
-		print _("\t--listen {PORT}\tListen for incoming connections.")
-		print _("\t--connect {IP|DN}\tConnects to host (support giver).")
-		print _("\t--list {URL|FILE}\tAlternative Support list.")
-		print _("\t--low-colors\t\tUse 8bit colors (for slow connections). Linux only.")
-		print _("\t--version\t\tThe current Gitso version.")
-		print _("\t--help\t\tThis Menu.")
+		print _("\t--dev\t\tSet self.paths for development")
+		print _("\t--listen {PORT}\tListen for incoming connections")
+		print _("\t--connect {IP|DN}\tConnects to host (support giver)")
+		print _("\t--list {URL|FILE}\tAlternative Support list")
+		print _("\t--low-colors\t\tUse 8bit colors (for slow connections). Linux only")
+		print _("\t--version\t\tThe current Gitso version")
+		print _("\t--help\t\tThis Menu")
 		sys.exit(1)
 	
 	def GetPaths(self):

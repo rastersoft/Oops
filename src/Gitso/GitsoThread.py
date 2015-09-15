@@ -80,7 +80,7 @@ class GitsoThread(threading.Thread):
 			time.sleep(.2)
 
 		if not self.error:
-			self.window.setMessage(_("Idle."), False)
+			self.window.setMessage(_("Idle"), False)
 
 		self.kill()
 
