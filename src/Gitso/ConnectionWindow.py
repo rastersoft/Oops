@@ -67,7 +67,7 @@ class ConnectionWindow(wx.Frame):
 		self.enablePMP = False
 		
 		if re.match('(?:open|free|net)bsd|linux',sys.platform):
-			wsize = (350,230)
+			wsize = (350,260)
 			xval1 = 155
 			xval2 = 250
 		else:
@@ -88,10 +88,10 @@ class ConnectionWindow(wx.Frame):
 		wx.EVT_TASKBAR_LEFT_UP(self.TrayIcon, self.RestoreWindow)
 		
 		#Buttons
-		self.connectButton = wx.Button(self, 10, _("Start"), wx.Point(xval1, 114))
+		self.connectButton = wx.Button(self, 10, _("Start"), wx.Point(xval1, 144))
 		self.connectButton.SetDefault()
 		wx.EVT_BUTTON(self, 10, self.ConnectSupport)
-		self.stopButton = wx.Button(self, wx.ID_STOP, "", wx.Point(xval2, 114))
+		self.stopButton = wx.Button(self, wx.ID_STOP, "", wx.Point(xval2, 144))
 		self.stopButton.Enable(False)
 		wx.EVT_BUTTON(self, wx.ID_STOP, self.KillPID)
 		
@@ -110,7 +110,7 @@ class ConnectionWindow(wx.Frame):
 				self.cb1.Enable(False)
 
 		# Checkbox for low color
-		self.cb2 = wx.CheckBox(self, -1, 'Use low colors', (10, 114))
+		self.cb2 = wx.CheckBox(self, -1, 'Use low colors', (40, 104))
 		self.cb2.Set3StateValue(False)
 		self.cb2.SetValue(self.paths['low-colors']) # Use value of --low-colors from command line
 		self.cb2.Enable(False)
