@@ -67,7 +67,7 @@ class ConnectionWindow(wx.Frame):
 		self.enablePMP = False
 		
 		if re.match('(?:open|free|net)bsd|linux',sys.platform):
-			wsize = (350,195)
+			wsize = (350,230)
 			xval1 = 155
 			xval2 = 250
 		else:
@@ -88,16 +88,16 @@ class ConnectionWindow(wx.Frame):
 		wx.EVT_TASKBAR_LEFT_UP(self.TrayIcon, self.RestoreWindow)
 		
 		#Buttons
-		self.connectButton = wx.Button(self, 10, _("Start"), wx.Point(xval1, 81))
+		self.connectButton = wx.Button(self, 10, _("Start"), wx.Point(xval1, 114))
 		self.connectButton.SetDefault()
 		wx.EVT_BUTTON(self, 10, self.ConnectSupport)
-		self.stopButton = wx.Button(self, wx.ID_STOP, "", wx.Point(xval2, 81))
+		self.stopButton = wx.Button(self, wx.ID_STOP, "", wx.Point(xval2, 114))
 		self.stopButton.Enable(False)
 		wx.EVT_BUTTON(self, wx.ID_STOP, self.KillPID)
 		
 		# Radio Boxes
 		self.rb1 = wx.RadioButton(self, -1, _('Get Help'), (10, 15), style=wx.RB_GROUP)
-		self.rb2 = wx.RadioButton(self, -1, _('Give Support'), (10, 48))
+		self.rb2 = wx.RadioButton(self, -1, _('Give Support'), (10, 80))
 		self.rb1.SetValue(True)
 		
 		self.Bind(wx.EVT_RADIOBUTTON, self.RadioToggle, id=self.rb1.GetId())
@@ -110,7 +110,7 @@ class ConnectionWindow(wx.Frame):
 				self.cb1.Enable(False)
 
 		# Checkbox for low color
-		self.cb2 = wx.CheckBox(self, -1, 'Use low colors', (10, 81))
+		self.cb2 = wx.CheckBox(self, -1, 'Use low colors', (10, 114))
 		self.cb2.Set3StateValue(False)
 		self.cb2.SetValue(self.paths['low-colors']) # Use value of --low-colors from command line
 		self.cb2.Enable(False)
@@ -349,7 +349,7 @@ class ConnectionWindow(wx.Frame):
 			handle.close()
 	
 	def displayHostBox(self, list, text):
-		self.hostField = wx.ComboBox(self, 30, "", wx.Point(105, 12), wx.Size(230, -1), list, wx.CB_DROPDOWN)
+		self.hostField = wx.ComboBox(self, 30, "", wx.Point(40, 40), wx.Size(300, -1), list, wx.CB_DROPDOWN)
 		self.hostField.SetValue(text)
 
 	def setMessage(self, message, status):

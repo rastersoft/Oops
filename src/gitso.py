@@ -61,16 +61,16 @@ if sys.platform.startswith('win'):
 		lang, enc = locale.getdefaultlocale()
 		os.environ['LANG'] = lang
 
-locale.setlocale(locale.LC_ALL, '')
-if sys.platform.startswith('win'):
-	gettext.bindtextdomain('gitso', '.')
-else:
-	gettext.bindtextdomain('gitso', '/usr/share/locale')
-gettext.textdomain('gitso')
-
 if __name__ == "__main__":
 	app = wx.App(False)
 	args = Gitso.ArgsParser.ArgsParser()
+	locale.setlocale(locale.LC_ALL, '')
+	if sys.platform.startswith('win'):
+		gettext.bindtextdomain('gitso', '.')
+	else:
+		gettext.bindtextdomain('gitso', args.paths['locales'])
+	gettext.textdomain('gitso')
+
 	Gitso.ConnectionWindow.ConnectionWindow(None, -1, "Gitso", args.GetPaths(), args.GetPort())
 	app.MainLoop()
 	del app
