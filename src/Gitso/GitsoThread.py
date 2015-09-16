@@ -137,6 +137,7 @@ class GitsoThread(threading.Thread):
 				listen = os.popen('netstat -a | find "LISTEN" | find "5500"').readlines()
 		else:
 			print 'Platform not detected'
+		
 		if len(connection) == 0 and len(listen) == 0:
 			return False
 		else:

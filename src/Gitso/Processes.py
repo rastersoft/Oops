@@ -69,7 +69,6 @@ class Processes:
 			# These are the options for low-res connections.
 			# In the future, I'd like to support cross-platform low-res options.
 			# What aboot a checkbox in the gui
-
 			if self.paths['low-colors'] == False:
 				self.returnPID = os.spawnlp(os.P_NOWAIT, 'vncviewer', 'vncviewer', '-listen')
 			else:
@@ -82,7 +81,6 @@ class Processes:
 				self.returnPID = subprocess.Popen(['vncviewer.exe', '-listen'])
 		else:
 			print _('Platform not detected')
-		
 		return self.returnPID
 
 	def KillPID(self):

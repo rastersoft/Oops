@@ -46,7 +46,6 @@ class ArgsParser:
 		self.paths['list'] = []
 		self.paths['mode'] = ''
 		self.paths['low-colors'] = False
-		self.port = "5500"
 		
 		if re.match('(?:open|free|net)bsd|linux',sys.platform):
 			self.paths['main'] = os.path.join(sys.path[0], '..', 'share', 'gitso')
@@ -96,17 +95,6 @@ class ArgsParser:
 				if self.paths['connect'] <> "":
 					print _("Error: --connect and --listen can not be used at the same time")
 					self.HelpMenu()
-
-				i = i + 1
-				if i >= len(sys.argv):
-					self.port = "5500"
-				else:
-					if sys.argv[i][0] + sys.argv[i][1] <> "--":
-						self.port = sys.argv[i]
-					else:
-						self.port = "5500"
-						i = i - 1
-
 				self.paths['listen'] = True
 
 			elif sys.argv[i] == '--connect': # --connect
@@ -171,9 +159,6 @@ class ArgsParser:
 	
 	def GetPaths(self):
 		return self.paths
-		
-	def GetPort(self):
-		return self.port
 		
 	def getHosts(self, file):
 		list = []
