@@ -217,10 +217,10 @@ class ConnectionWindow(wx.Frame):
 				
 				self.sampleList = []
 				self.sampleList = self.getHosts(self.sampleList, os.path.join(self.paths['main'], 'hosts.txt'))
-				self.sampleList = self.getHosts(self.sampleList, self.paths['Préférences'])
+				self.sampleList = self.getHosts(self.sampleList, self.paths['Preferences'])
 				
 				if self.sampleList.count(host) == 0:
-					self.saveHost(self.paths['Préférences'], host)
+					self.saveHost(self.paths['Preferences'], host)
 					self.sampleList.append(host)
 					self.hostField.Destroy()
 					self.displayHostBox(self.sampleList, host)
@@ -244,7 +244,7 @@ class ConnectionWindow(wx.Frame):
 	
 	
 	def clearHistory(self, event):
-		handle = open(self.paths['Préférences'], 'w')
+		handle = open(self.paths['Preferences'], 'w')
 		handle.write("")
 		handle.close()
 		
@@ -253,7 +253,7 @@ class ConnectionWindow(wx.Frame):
 
 		self.sampleList = []
 		self.sampleList = self.getHosts(self.sampleList, os.path.join(self.paths['main'], 'hosts.txt'))
-		self.sampleList = self.getHosts(self.sampleList, self.paths['Préférences'])
+		self.sampleList = self.getHosts(self.sampleList, self.paths['Preferences'])
 
 		self.displayHostBox(self.sampleList, text)
 	
