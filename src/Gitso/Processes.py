@@ -26,6 +26,7 @@ along with Gitso.  If not, see <http://www.gnu.org/licenses/>.
 import wx
 import os, sys, signal, os.path, re
 import subprocess
+import time
 from gettext import gettext as _
 
 class Processes:
@@ -48,7 +49,7 @@ class Processes:
 		elif sys.platform == 'win32':
 			self.returnPID = subprocess.Popen(['WinVNC.exe']).pid
 			print _("Launched WinVNC.exe, waiting to run -connect command...")
-			
+			time.sleep(2)
 			if self.paths['mode'] == 'dev':
 				subprocess.Popen(['%sWinVNC.exe' % self.paths['resources'], '-connect', '%s' % host])
 			else:
