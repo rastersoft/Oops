@@ -26,6 +26,7 @@ along with Gitso.  If not, see <http://www.gnu.org/licenses/>.
 import wx
 import os, sys, signal, os.path, time, thread, re
 import Gitso.AboutWindow
+import Gitso.Processes
 from gettext import gettext as _
 
 if sys.platform == 'darwin' or re.match('(?:open|free|net)bsd|linux',sys.platform):
