@@ -92,7 +92,6 @@ snowLeopardDMG () {
 	cp Processes.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
 	cp ConnectionWindow.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
 	cp AboutWindow.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp GitsoThread.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
 	cp NATPMP.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
 	
 	cp arch/osx/libjpeg-copyright.txt $OSX_BUILD_DIR/Gitso.app/Contents/Frameworks/
@@ -150,7 +149,6 @@ LeopardDMG () {
 	cp Processes.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
 	cp ConnectionWindow.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
 	cp AboutWindow.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp GitsoThread.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
 	cp NATPMP.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
 	
 	cp arch/osx/libjpeg-copyright.txt $OSX_BUILD_DIR/Gitso.app/Contents/Frameworks/

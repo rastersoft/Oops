@@ -92,7 +92,7 @@ class ArgsParser:
 					self.paths['copyright'] = os.path.join(sys.path[0], 'COPYING')
 
 			elif sys.argv[i] == '--listen': # --listen
-				if self.paths['connect'] <> "":
+				if self.paths['connect'] != "":
 					print _("Error: --connect and --listen can not be used at the same time")
 					self.HelpMenu()
 				self.paths['listen'] = True
@@ -107,7 +107,7 @@ class ArgsParser:
 					print _("Error: --connect and --listen can not be used at the same time")
 					self.HelpMenu()
 				
-				if sys.argv[i][0] + sys.argv[i][1] <> "--":
+				if sys.argv[i][0] + sys.argv[i][1] != "--":
 					self.paths['connect'] = sys.argv[i]
 				else:
 					print _("Error: '%s' is not a valid host with '--connect'") % sys.argv[i]
@@ -122,7 +122,7 @@ class ArgsParser:
 					print _("Error: No List file given")
 					self.HelpMenu()
 				
-				if sys.argv[i][0] + sys.argv[i][1] <> "--":
+				if sys.argv[i][0] + sys.argv[i][1] != "--":
 					self.paths['list'] = self.getHosts(sys.argv[i])
 				else:
 					print _("Error: '%s' is not a valid list with '--list'") % sys.argv[i]

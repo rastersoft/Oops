@@ -25,8 +25,11 @@ along with Gitso.  If not, see <http://www.gnu.org/licenses/>.
 
 import wx
 import os, sys, signal, os.path, time, thread, re
-import Gitso.AboutWindow, Gitso.GitsoThread
+import Gitso.AboutWindow
 from gettext import gettext as _
+
+if sys.platform == 'darwin' or re.match('(?:open|free|net)bsd|linux',sys.platform):
+	import NATPMP
 
 class GitsoTaskBarIcon(wx.TaskBarIcon):
 	def __init__(self, icon, frame):
@@ -59,8 +62,7 @@ class ConnectionWindow(wx.Frame):
 		"""
 		self.ToggleValue = 0
 		self.paths = paths
-		self.thread = None
-		self.threadLock = thread.allocate_lock()
+		self.process = Gitso.Processes.Processes(paths)
 		
 		# Disable until 0.7 release
 		self.enablePMP = False
@@ -171,7 +173,7 @@ class ConnectionWindow(wx.Frame):
 			self.rb2.Value = True
 			self.RadioToggle(None)
 			self.ConnectSupport(None)
-		elif self.paths['connect'] <> "":
+		elif self.paths['connect'] != "":
 			self.rb1.Value = True
 			self.RadioToggle(None)
 			self.hostField.Value = self.paths['connect']
@@ -224,7 +226,6 @@ class ConnectionWindow(wx.Frame):
 					self.sampleList.append(host)
 					self.hostField.Destroy()
 					self.displayHostBox(self.sampleList, host)
-				
 				self.createThread(host)
 			else:
 				self.setMessage(_("Invalid Support Address"), False)
@@ -297,18 +298,17 @@ class ConnectionWindow(wx.Frame):
 		@author: Derek Buranen
 		@author: Aaron Gerber
 		"""
-		if self.thread <> None:
-			self.thread.kill()
+
+		self.process.KillPID()
 			# If you don't wait 0.5+ seconds, the interface won't reload and it'll freeze.
 			# Possibly on older systems you should wait longer, it works fine on mine...
-			time.sleep(.5)
-		self.thread = None
 		if showMessage :
 			self.setMessage(_("Idle"), False)
 		return
 	
 
 	def OnCloseWindow(self, evt):
+
 		self.KillPID()
 		self.Destroy()
 	
@@ -353,10 +353,6 @@ class ConnectionWindow(wx.Frame):
 		self.hostField.SetValue(text)
 
 	def setMessage(self, message, status):
-		if self.threadLock.locked():
-			return
-
-		self.threadLock.acquire()
 
 		self.statusBar.SetStatusText(message, 0)
 
@@ -373,16 +369,73 @@ class ConnectionWindow(wx.Frame):
 		else:
 			self.rb2.SetValue(True)
 		
-		self.threadLock.release()
+
+	def check_wm(self,event):
+
+		if self.process.returnPID == 0:
+			self.timer.Stop()
+			self.timer = None
+			return
+		try:
+			os.waitpid(-1, os.WNOHANG)
+			retval = False
+		except:
+			retval = True
+
+		if not wx.Process.Exists(self.process.returnPID):
+			self.process.KillPID()
+			self.setMessage(_("Idle"), False)
+			self.timer.Stop()
+			self.timer = None
+
+
+	def NATPMP(self, action):
+		"""
+		Call NAT-PMP on router to get port 5500 forwarded.
+
+		@author: Dennis Koot
+		"""
+		if sys.platform == 'darwin' or re.match('(?:open|free|net)bsd|linux',sys.platform):
+			if self.enablePMP:
+				if action == 'request':
+					lifetime = 3600
+					print "Request port 5500 (NAT-PMP)."
+				else:
+					lifetime = 0
+					print "Give up port 5500 (NAT-PMP)."
+
+				pubpriv_port = int(5500)
+				protocol = NATPMP.NATPMP_PROTOCOL_TCP
+
+				try:
+					gateway = NATPMP.get_gateway_addr()
+					print NATPMP.map_port(protocol, pubpriv_port, pubpriv_port, lifetime, gateway_ip=gateway)
+				except:
+					print "Warning: Unable to automap port."
+
+
 
 	def createThread(self, host=""):
+
 		self.paths['low-colors'] = self.cb2.GetValue() # Set low-colors to value of checkbox
+
 		self.KillPID(False)
-		self.thread = Gitso.GitsoThread.GitsoThread(self, self.paths)
-		self.thread.setHost(host)
-		self.thread.start()
+		if host != "":
+			# Get Help
+			self.process.getSupport(host)
+			self.setMessage(_("Connected."), True)
+		else:
+			# Give Support
+			if sys.platform == 'darwin' or re.match('(?:open|free|net)bsd|linux',sys.platform):
+				if self.enablePMP:
+					self.cb1.Enable(False)
+					if self.cb1.GetValue() == True:
+						self.NATPMP('request')
 
-		# If you don't wait 1+ seconds, the interface won't reload and it'll freeze.
-		# Possibly on older systems you should wait longer, it works fine on mine...
-		time.sleep(1)
+			self.process.giveSupport()
+			self.setMessage(_("Server running."), True)
 
+		print _("GitsoThread.run(pid: %s) running...") % str(self.process.returnPID)
+		self.timer = wx.Timer(self)
+		self.Bind(wx.EVT_TIMER, self.check_wm, self.timer)
+		self.timer.Start(500,False)

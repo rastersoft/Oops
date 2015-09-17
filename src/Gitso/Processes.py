@@ -25,63 +25,61 @@ along with Gitso.  If not, see <http://www.gnu.org/licenses/>.
 
 import wx
 import os, sys, signal, os.path, re
+import subprocess
 from gettext import gettext as _
 
 class Processes:
-	def __init__(self, window, paths):
+	def __init__(self, paths):
 		self.returnPID = 0
-		self.window = window
 		self.paths = paths
+
 
 	def getSupport(self, host):
 		if sys.platform == 'darwin':
-			self.returnPID = os.spawnl(os.P_NOWAIT, '%sOSXvnc/OSXvnc-server' % self.paths['resources'], '%sOSXvnc/OSXvnc-server' % self.paths['resources'], '-connectHost', '%s' % host)
+			self.returnPID = subprocess.Popen([os.path.join(self.paths['resources'],'OSXvnc/OSXvnc-server'), '-connectHost', host]).pid
+
 		elif re.match('(?:open|free|net)bsd|linux',sys.platform):
 			# We should include future versions with options for speed.
 			#self.returnPID = os.spawnlp(os.P_NOWAIT, 'x11vnc', 'x11vnc','-nopw','-ncache','20','-solid','black','-connect','%s' % host)
 			
-			self.returnPID = os.spawnlp(os.P_NOWAIT, 'x11vnc', 'x11vnc','-nopw','-ncache','20','-connect','%s' % host)
+			self.returnPID = subprocess.Popen(['x11vnc','-nopw','-ncache','20','-connect_or_exit', host]).pid
 			
 			# Added for OpenBSD compatibility
-			import time
-			time.sleep(3)
 		elif sys.platform == 'win32':
-			import subprocess
-			self.returnPID = subprocess.Popen(['WinVNC.exe'])
+			self.returnPID = subprocess.Popen(['WinVNC.exe']).pid
 			print _("Launched WinVNC.exe, waiting to run -connect command...")
-			import time
-			time.sleep(3)
 			
 			if self.paths['mode'] == 'dev':
-				subprocess.Popen(['%sWinVNC.exe' % self.paths['resources'], '-connect', '%s' % host])
+				subprocess.Popen(['%sWinVNC.exe' % self.paths['resources'], '-connect_or_exit', '%s' % host])
 			else:
-				subprocess.Popen(['WinVNC.exe', '-connect', '%s' % host])
+				subprocess.Popen(['WinVNC.exe', '-connect_or_exit', '%s' % host])
 		else:
 			print _('Platform not detected')
 		return self.returnPID
-	
+
+
 	def giveSupport(self):
 		if sys.platform == 'darwin':
 			vncviewer = '%scotvnc.app/Contents/MacOS/cotvnc' % self.paths['resources']
-			self.returnPID = os.spawnlp(os.P_NOWAIT, vncviewer, vncviewer, '--listen')
+			self.returnPID = subprocess.Popen([vncviewer, '--listen']).pid
 		elif re.match('(?:open|free|net)bsd|linux',sys.platform):
 			
 			# These are the options for low-res connections.
 			# In the future, I'd like to support cross-platform low-res options.
 			# What aboot a checkbox in the gui
 			if self.paths['low-colors'] == False:
-				self.returnPID = os.spawnlp(os.P_NOWAIT, 'vncviewer', 'vncviewer', '-listen')
+				self.returnPID = subprocess.Popen(['vncviewer', '-listen']).pid
 			else:
-				self.returnPID = os.spawnlp(os.P_NOWAIT, 'vncviewer', 'vncviewer', '-bgr233', '-listen')
+				self.returnPID = subprocess.Popen(['vncviewer', '-bgr233', '-listen']).pid
 		elif sys.platform == 'win32':
-			import subprocess
 			if self.paths['mode'] == 'dev':
-				self.returnPID = subprocess.Popen(['%svncviewer.exe' % self.paths['resources'], '-listen'])
+				self.returnPID = subprocess.Popen(['%svncviewer.exe' % self.paths['resources'], '-listen']).pid
 			else:
-				self.returnPID = subprocess.Popen(['vncviewer.exe', '-listen'])
+				self.returnPID = subprocess.Popen(['vncviewer.exe', '-listen']).pid
 		else:
 			print _('Platform not detected')
 		return self.returnPID
+
 
 	def KillPID(self):
 		"""
@@ -105,6 +103,10 @@ class Processes:
 				os.spawnlp(os.P_NOWAIT, 'pkill', 'pkill', '-f', 'x11vnc')
 			else:
 				os.kill(self.returnPID, signal.SIGKILL)
+			try:
+				os.waitpid(self.returnPID, 0)
+			except:
+				pass
 			self.returnPID = 0
 		return
 
