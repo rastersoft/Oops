@@ -94,7 +94,7 @@ class Processes:
 			if sys.platform == 'win32':
 				import win32api
 				PROCESS_TERMINATE = 1
-				handle = win32api.OpenProcess(PROCESS_TERMINATE, False, self.returnPID.pid)
+				handle = win32api.OpenProcess(PROCESS_TERMINATE, False, self.returnPID)
 				win32api.TerminateProcess(handle, -1)
 				win32api.CloseHandle(handle)
 			elif re.match('(?:open|free|net)bsd|linux',sys.platform):
