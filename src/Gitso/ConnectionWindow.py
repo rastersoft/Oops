@@ -312,6 +312,7 @@ class ConnectionWindow(wx.Frame):
 
 		self.KillPID()
 		self.Destroy()
+		sys.exit(0)
 	
 	def OnIconizeWindow(self, evt):
 		self.Hide()
