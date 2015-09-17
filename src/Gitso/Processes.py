@@ -50,9 +50,9 @@ class Processes:
 			print _("Launched WinVNC.exe, waiting to run -connect command...")
 			
 			if self.paths['mode'] == 'dev':
-				subprocess.Popen(['%sWinVNC.exe' % self.paths['resources'], '-connect_or_exit', '%s' % host])
+				subprocess.Popen(['%sWinVNC.exe' % self.paths['resources'], '-connect', '%s' % host])
 			else:
-				subprocess.Popen(['WinVNC.exe', '-connect_or_exit', '%s' % host])
+				subprocess.Popen(['WinVNC.exe', '-connect', '%s' % host])
 		else:
 			print _('Platform not detected')
 		return self.returnPID
