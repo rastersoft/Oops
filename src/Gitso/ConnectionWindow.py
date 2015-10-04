@@ -80,9 +80,6 @@ class ConnectionWindow(wx.Frame):
 # 			xval1 = 180
 # 			xval2 = 265
 
-		import locale
-		self.os_encoding = locale.getpreferredencoding()
-
 		wx.Frame.__init__(self, parent, wx.ID_ANY, title, size=wsize, style=wx.DEFAULT_FRAME_STYLE & ~(wx.FRAME_SHAPED | wx.RESIZE_BORDER | wx.RESIZE_BOX | wx.MAXIMIZE_BOX))
 		self.Bind(wx.EVT_CLOSE, self.OnCloseWindow)
 		self.Bind(wx.EVT_ICONIZE, self.OnIconizeWindow)
@@ -128,7 +125,7 @@ class ConnectionWindow(wx.Frame):
 		
 		self.sampleList = self.getHosts(self.sampleList, os.path.join(self.paths['main'], 'hosts.txt'))
 		self.sampleList = self.getHosts(self.sampleList, self.paths['preferences'])
-		self.displayHostBox(self.sampleList, _("Enter/Select Support Address").encode(self.os_encoding))
+		self.displayHostBox(self.sampleList, _("Enter/Select Support Address"))
 		self.delete_entry = False
 		
 		# Menu      
