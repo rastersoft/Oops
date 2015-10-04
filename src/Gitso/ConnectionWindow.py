@@ -28,13 +28,7 @@ import os, sys, signal, os.path, time, thread, re
 import Gitso.AboutWindow
 import Gitso.Processes
 
-if sys.platform.startswith('win'):
-	from gettext import gettext
-	import locale
-	def _(text):
-		return gettext(text).decode(locale.getpreferredencoding())
-else:
-	from gettext import gettext as _
+from gettext import gettext as _
 
 
 if sys.platform == 'darwin' or re.match('(?:open|free|net)bsd|linux',sys.platform):
