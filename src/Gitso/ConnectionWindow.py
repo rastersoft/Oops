@@ -27,10 +27,19 @@ import wx
 import os, sys, signal, os.path, time, thread, re
 import Gitso.AboutWindow
 import Gitso.Processes
-from gettext import gettext as _
+
+if sys.platform.startswith('win'):
+	from gettext import gettext
+	import locale
+	def _(text):
+		return gettext(text).decode(locale.getpreferredencoding())
+else:
+	from gettext import gettext as _
+
 
 if sys.platform == 'darwin' or re.match('(?:open|free|net)bsd|linux',sys.platform):
 	import NATPMP
+
 
 class GitsoTaskBarIcon(wx.TaskBarIcon):
 	def __init__(self, icon, frame):
@@ -67,7 +76,7 @@ class ConnectionWindow(wx.Frame):
 		
 		# Disable until 0.7 release
 		self.enablePMP = False
-		
+
 		#if re.match('(?:open|free|net)bsd|linux',sys.platform):
 		wsize = (350,260)
 		xval1 = 155
@@ -76,6 +85,9 @@ class ConnectionWindow(wx.Frame):
 # 			wsize = (350,175)
 # 			xval1 = 180
 # 			xval2 = 265
+
+		import locale
+		self.os_encoding = locale.getpreferredencoding()
 
 		wx.Frame.__init__(self, parent, wx.ID_ANY, title, size=wsize, style=wx.DEFAULT_FRAME_STYLE & ~(wx.FRAME_SHAPED | wx.RESIZE_BORDER | wx.RESIZE_BOX | wx.MAXIMIZE_BOX))
 		self.Bind(wx.EVT_CLOSE, self.OnCloseWindow)
@@ -123,6 +135,7 @@ class ConnectionWindow(wx.Frame):
 		self.sampleList = self.getHosts(self.sampleList, os.path.join(self.paths['main'], 'hosts.txt'))
 		self.sampleList = self.getHosts(self.sampleList, self.paths['preferences'])
 		self.displayHostBox(self.sampleList, _("Enter/Select Support Address"))
+		self.delete_entry = False
 		
 		# Menu      
 		menuBar = wx.MenuBar()
@@ -163,7 +176,7 @@ class ConnectionWindow(wx.Frame):
 		self.setMessage(_("Idle"), False)
 		
 		self.SetDefaultItem(self.hostField)
-		self.hostField.SetFocus()
+		#self.hostField.SetFocus()
 		
 		self.SetThemeEnabled(True)
 		self.Centre()
@@ -306,7 +319,7 @@ class ConnectionWindow(wx.Frame):
 		if showMessage :
 			self.setMessage(_("Idle"), False)
 		return
-	
+
 
 	def OnCloseWindow(self, evt):
 
@@ -349,10 +362,20 @@ class ConnectionWindow(wx.Frame):
 			handle = open(file, 'a')
 			handle.write(", %s" % host)
 			handle.close()
-	
+
+
+	def delete_text_on_focus(self,evt):
+		if self.hostField.HasFocus():
+			if self.delete_entry == False:
+				self.hostField.SetValue("")
+				self.delete_entry = True
+
+
 	def displayHostBox(self, list, text):
+
 		self.hostField = wx.ComboBox(self, 30, "", wx.Point(40, 40), wx.Size(300, -1), list, wx.CB_DROPDOWN)
 		self.hostField.SetValue(text)
+		self.hostField.Bind(wx.EVT_SET_FOCUS,self.delete_text_on_focus)
 
 	def setMessage(self, message, status):
 

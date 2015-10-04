@@ -149,7 +149,7 @@ class ArgsParser:
 		print "Usage: " + os.path.basename(sys.argv[0]) + " [OPTION]"
 		print "\tOPTIONS"
 		print _("\t--dev\t\tSet self.paths for development")
-		print _("\t--listen {PORT}\tListen for incoming connections")
+		print _("\t--listen\tListen for incoming connections")
 		print _("\t--connect {IP|DN}\tConnects to host (support giver)")
 		print _("\t--list {URL|FILE}\tAlternative Support list")
 		print _("\t--low-colors\t\tUse 8bit colors (for slow connections). Linux only")
