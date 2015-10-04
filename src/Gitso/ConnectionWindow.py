@@ -128,7 +128,7 @@ class ConnectionWindow(wx.Frame):
 		
 		self.sampleList = self.getHosts(self.sampleList, os.path.join(self.paths['main'], 'hosts.txt'))
 		self.sampleList = self.getHosts(self.sampleList, self.paths['preferences'])
-		self.displayHostBox(self.sampleList, _("Enter/Select Support Address")).decode(self.os_encoding)
+		self.displayHostBox(self.sampleList, _("Enter/Select Support Address").decode(self.os_encoding))
 		self.delete_entry = False
 		
 		# Menu      
