@@ -10,11 +10,6 @@ try:
 except:
     pass
 
-try:
-    import py2app
-except:
-    pass
-
 OPTIONS = {}
 
 if sys.platform == 'darwin':
@@ -110,8 +105,6 @@ params_setup['data_files'] = get_data_files()
 params_setup['packages']=['Gitso']
 params_setup['package_dir'] = {"Gitso" : "src/Gitso"}
 
-if platform == 'mac':
-    params_setup['options']={'argv_emulation': True, 'site_packages': True}
 
 if platform == 'windows':
     params_setup['windows'] = [{"script":"src/gitso.py", "icon_resources":[(1,"data/icons/gitso.ico")]}]
