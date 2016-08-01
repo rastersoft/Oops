@@ -81,6 +81,7 @@ class ConnectionWindow(object):
 		self.cb_lowcolors = tkinter.Checkbutton(self.app,text = _('Use low colors'), variable = self.lowcolor, onvalue = 1, offvalue = 0, anchor = tkinter.W)
 
 		self.displayHostBox = tkinter.Entry(self.app, textvariable = self.address)
+		self.displayHostBox.bind('<Return>', self.ConnectSupport)
 		#self.sampleList,
 		self.address.set(_("Enter/Select Support Address"))
 		self.delete_entry = True
@@ -137,7 +138,7 @@ class ConnectionWindow(object):
 		    self.delete_entry = False
 
 
-	def ConnectSupport(self):
+	def ConnectSupport(self, event = None):
 		"""
 		Call VNC in a thread.
 		
