@@ -21,5 +21,5 @@
 
 "C:\Python34\python" setup.py py2exe
 
-"C:\Program Files (x86)\NSIS\makensis.exe" /X"SetCompressor /FINAL /SOLID lzma " makeoops.nsi
+"C:\Program Files\NSIS\makensis.exe" /X"SetCompressor /FINAL /SOLID lzma " makeoops.nsi
 :: rd build /s /q
