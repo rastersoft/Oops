@@ -1,22 +1,26 @@
 #! /bin/bash
 
 ##########
-# Gisto - Gitso is to support others
-# 
-# Copyright 2008 - 2010: Aaron Gerber, Derek Buranen
+# Oops - Oops is to support others
 #
-# Gitso is free software: you can redistribute it and/or modify
+# Copyright 2016 Raster Software Vigo
+#
+# Oops is a utility to facilitate the connection of VNC
+#
+# Based on Gitso, from Aaron Gerber and Derek Buranen, @copyright: 2008 - 2010
+#
+# Oops is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Gitso is distributed in the hope that it will be useful,
+# Oops is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
-# along with Gitso.  If not, see <http://www.gnu.org/licenses/>.
+# along with Oops.  If not, see <http://www.gnu.org/licenses/>.
 ##########
 
 
@@ -52,8 +56,8 @@ mksrc () {
 		mkdir -p $TMP_PKG/trunk/
 		cp -r ./ $TMP_PKG/trunk/
  		find $TMP_PKG/trunk -name ".svn" -exec rm -rf {} 2>&1 > /dev/null ';' 2>&1 > /dev/null
-		mv $TMP_PKG/trunk $TMP_PKG/gitso-0.6.2
-		tar -cj -C $TMP_PKG/ gitso-0.6.2 > $P/$SRC
+		mv $TMP_PKG/trunk $TMP_PKG/oops-0.6.2
+		tar -cj -C $TMP_PKG/ oops-0.6.2 > $P/$SRC
 		rm -rf $TMP_PKG
 }
 
@@ -65,7 +69,7 @@ mksrc () {
 snowLeopardDMG () {
 	# Grab the default option and then reset it at the end.
 	#defaults write com.apple.versioner.python Prefer-32-Bit -bool yes
-	echo -e "Creating Gitso.app "
+	echo -e "Creating Oops.app "
 	rm -f setup.py
 	rm -rf $OSX_BUILD_DIR
 	
@@ -74,45 +78,45 @@ snowLeopardDMG () {
 	python arch/osx/setup.py py2app
 	
 	echo -e ".."
-	cp arch/osx/Info_OSX-10.6.plist $OSX_BUILD_DIR/Gitso.app/Contents/Info.plist
+	cp arch/osx/Info_OSX-10.6.plist $OSX_BUILD_DIR/Oops.app/Contents/Info.plist
 	
-	cp COPYING $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp PythonApplet.icns $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
+	cp COPYING $OSX_BUILD_DIR/Oops.app/Contents/Resources/
+	cp PythonApplet.icns $OSX_BUILD_DIR/Oops.app/Contents/Resources/
 	
 	tar xvfz arch/osx/OSXvnc.tar.gz
-	mv OSXvnc $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
+	mv OSXvnc $OSX_BUILD_DIR/Oops.app/Contents/Resources/
 
 	tar xvfz arch/osx/cotvnc.app.tar.gz
-	mv cotvnc.app $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
+	mv cotvnc.app $OSX_BUILD_DIR/Oops.app/Contents/Resources/
 	
-	cp icon.ico $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp icon.png $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp __init__.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp ArgsParser.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp Processes.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp ConnectionWindow.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp AboutWindow.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp NATPMP.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
+	cp icon.ico $OSX_BUILD_DIR/Oops.app/Contents/Resources/
+	cp icon.png $OSX_BUILD_DIR/Oops.app/Contents/Resources/
+	cp __init__.py $OSX_BUILD_DIR/Oops.app/Contents/Resources/
+	cp ArgsParser.py $OSX_BUILD_DIR/Oops.app/Contents/Resources/
+	cp Processes.py $OSX_BUILD_DIR/Oops.app/Contents/Resources/
+	cp ConnectionWindow.py $OSX_BUILD_DIR/Oops.app/Contents/Resources/
+	cp AboutWindow.py $OSX_BUILD_DIR/Oops.app/Contents/Resources/
+	cp NATPMP.py $OSX_BUILD_DIR/Oops.app/Contents/Resources/
 	
-	cp arch/osx/libjpeg-copyright.txt $OSX_BUILD_DIR/Gitso.app/Contents/Frameworks/
-	cp arch/osx/osxnvc_echoware-copyright.txt $OSX_BUILD_DIR/Gitso.app/Contents/Resources/OSXvnc/
-	cp arch/osx/cotvnc-copyright.txt $OSX_BUILD_DIR/Gitso.app/Contents/Resources/cotvnc.app/contents/Resources
-	cp arch/osx/osxvnc-copyright.txt $OSX_BUILD_DIR/Gitso.app/Contents/Resources/OSXvnc/
+	cp arch/osx/libjpeg-copyright.txt $OSX_BUILD_DIR/Oops.app/Contents/Frameworks/
+	cp arch/osx/osxnvc_echoware-copyright.txt $OSX_BUILD_DIR/Oops.app/Contents/Resources/OSXvnc/
+	cp arch/osx/cotvnc-copyright.txt $OSX_BUILD_DIR/Oops.app/Contents/Resources/cotvnc.app/contents/Resources
+	cp arch/osx/osxvnc-copyright.txt $OSX_BUILD_DIR/Oops.app/Contents/Resources/OSXvnc/
 	
 	echo -e " [done]\n"
 	
 	echo -e "Creating $DMG_OSX_106"
 	rm -f $DMG_OSX_106
 	
-	mkdir $OSX_BUILD_DIR/Gitso
-	cp arch/osx/dmg_DS_Store $OSX_BUILD_DIR/Gitso/.DS_Store
-	ln -s /Applications/ $OSX_BUILD_DIR/Gitso/Applications
+	mkdir $OSX_BUILD_DIR/Oops
+	cp arch/osx/dmg_DS_Store $OSX_BUILD_DIR/Oops/.DS_Store
+	ln -s /Applications/ $OSX_BUILD_DIR/Oops/Applications
 	
-	mv "$OSX_BUILD_DIR/Gitso.app" "$OSX_BUILD_DIR/Gitso/"
-	cp -r arch/osx/Readme.rtfd $OSX_BUILD_DIR/Gitso/Readme.rtfd
+	mv "$OSX_BUILD_DIR/Oops.app" "$OSX_BUILD_DIR/Oops/"
+	cp -r arch/osx/Readme.rtfd $OSX_BUILD_DIR/Oops/Readme.rtfd
 	
 	echo -e "..."
-	hdiutil create -srcfolder $OSX_BUILD_DIR/Gitso/ $DMG_OSX_106
+	hdiutil create -srcfolder $OSX_BUILD_DIR/Oops/ $DMG_OSX_106
 	echo -e "... [done]\n"
 }
 
@@ -122,7 +126,7 @@ snowLeopardDMG () {
 # And because py2app needs to know there, we just use different config files.
 #
 LeopardDMG () {
-	echo -e "Creating Gitso.app "
+	echo -e "Creating Oops.app "
 	rm -f setup.py
 	rm -rf $OSX_BUILD_DIR
 	
@@ -131,45 +135,45 @@ LeopardDMG () {
 	python arch/osx/setup.py py2app
 	
 	echo -e ".."
-	cp arch/osx/Info_OSX-10.5.plist $OSX_BUILD_DIR/Gitso.app/Contents/Info.plist
+	cp arch/osx/Info_OSX-10.5.plist $OSX_BUILD_DIR/Oops.app/Contents/Info.plist
 	
-	cp COPYING $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp PythonApplet.icns $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
+	cp COPYING $OSX_BUILD_DIR/Oops.app/Contents/Resources/
+	cp PythonApplet.icns $OSX_BUILD_DIR/Oops.app/Contents/Resources/
 	
 	tar xvfz arch/osx/OSXvnc.tar.gz
-	mv OSXvnc $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
+	mv OSXvnc $OSX_BUILD_DIR/Oops.app/Contents/Resources/
 
 	tar xvfz arch/osx/cotvnc.app.tar.gz
-	mv cotvnc.app $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
+	mv cotvnc.app $OSX_BUILD_DIR/Oops.app/Contents/Resources/
 	
-	cp icon.ico $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp icon.png $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp __init__.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp ArgsParser.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp Processes.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp ConnectionWindow.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp AboutWindow.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
-	cp NATPMP.py $OSX_BUILD_DIR/Gitso.app/Contents/Resources/
+	cp icon.ico $OSX_BUILD_DIR/Oops.app/Contents/Resources/
+	cp icon.png $OSX_BUILD_DIR/Oops.app/Contents/Resources/
+	cp __init__.py $OSX_BUILD_DIR/Oops.app/Contents/Resources/
+	cp ArgsParser.py $OSX_BUILD_DIR/Oops.app/Contents/Resources/
+	cp Processes.py $OSX_BUILD_DIR/Oops.app/Contents/Resources/
+	cp ConnectionWindow.py $OSX_BUILD_DIR/Oops.app/Contents/Resources/
+	cp AboutWindow.py $OSX_BUILD_DIR/Oops.app/Contents/Resources/
+	cp NATPMP.py $OSX_BUILD_DIR/Oops.app/Contents/Resources/
 	
-	cp arch/osx/libjpeg-copyright.txt $OSX_BUILD_DIR/Gitso.app/Contents/Frameworks/
-	cp arch/osx/osxnvc_echoware-copyright.txt $OSX_BUILD_DIR/Gitso.app/Contents/Resources/OSXvnc/
-	cp arch/osx/cotvnc-copyright.txt $OSX_BUILD_DIR/Gitso.app/Contents/Resources/cotvnc.app/contents/Resources
-	cp arch/osx/osxvnc-copyright.txt $OSX_BUILD_DIR/Gitso.app/Contents/Resources/OSXvnc/
+	cp arch/osx/libjpeg-copyright.txt $OSX_BUILD_DIR/Oops.app/Contents/Frameworks/
+	cp arch/osx/osxnvc_echoware-copyright.txt $OSX_BUILD_DIR/Oops.app/Contents/Resources/OSXvnc/
+	cp arch/osx/cotvnc-copyright.txt $OSX_BUILD_DIR/Oops.app/Contents/Resources/cotvnc.app/contents/Resources
+	cp arch/osx/osxvnc-copyright.txt $OSX_BUILD_DIR/Oops.app/Contents/Resources/OSXvnc/
 	
 	echo -e " [done]\n"
 	
 	echo -e "Creating $DMG_OSX_105"
 	rm -f $DMG_OSX_105
 	
-	mkdir $OSX_BUILD_DIR/Gitso
-	cp arch/osx/dmg_DS_Store $OSX_BUILD_DIR/Gitso/.DS_Store
-	ln -s /Applications/ $OSX_BUILD_DIR/Gitso/Applications
+	mkdir $OSX_BUILD_DIR/Oops
+	cp arch/osx/dmg_DS_Store $OSX_BUILD_DIR/Oops/.DS_Store
+	ln -s /Applications/ $OSX_BUILD_DIR/Oops/Applications
 	
-	mv "$OSX_BUILD_DIR/Gitso.app" "$OSX_BUILD_DIR/Gitso/"
-	cp -r arch/osx/Readme.rtfd $OSX_BUILD_DIR/Gitso/Readme.rtfd
+	mv "$OSX_BUILD_DIR/Oops.app" "$OSX_BUILD_DIR/Oops/"
+	cp -r arch/osx/Readme.rtfd $OSX_BUILD_DIR/Oops/Readme.rtfd
 	
 	echo -e "..."
-	hdiutil create -srcfolder $OSX_BUILD_DIR/Gitso/ $DMG_OSX_105
+	hdiutil create -srcfolder $OSX_BUILD_DIR/Oops/ $DMG_OSX_105
 	echo -e "... [done]\n"
 }
 
@@ -178,7 +182,7 @@ LeopardDMG () {
 # Displays the help menu
 #
 helpMenu () {
-	echo -e "Usage makegitso.sh: [ BUILD OPTIONS ] [ OPTIONS ]"
+	echo -e "Usage makeoops.sh: [ BUILD OPTIONS ] [ OPTIONS ]"
 	echo -e "\tBUILD OPTIONS"
 	echo -e "\t--fedora\tMake package for Fedora. (only avaible on Fedora)"
 	echo -e "\t--opensuse\tMake package for OpenSUSE. (only avaible on OpenSUSE)"
@@ -198,18 +202,18 @@ helpMenu () {
 ##
 # Initialize values
 ############################
-DMG_OSX_106="Gitso_0.6.2_mac_SnowLeopard.dmg"
-DMG_OSX_105="Gitso_0.6.2_mac_Leopard.dmg"
-DEB="../gitso_0.6.2_all.deb"
-TARGZ="../gitso_0.6.2_all.tar.gz"
-SRC="gitso_0.6.2_src.tar.bz2"
-RPM="gitso-0.6.2-1.i586.rpm"
+DMG_OSX_106="Oops_0.6.2_mac_SnowLeopard.dmg"
+DMG_OSX_105="Oops_0.6.2_mac_Leopard.dmg"
+DEB="../oops_0.6.2_all.deb"
+TARGZ="../oops_0.6.2_all.tar.gz"
+SRC="oops_0.6.2_src.tar.bz2"
+RPM="oops-0.6.2-1.i586.rpm"
 RPMOUT=""
 
 OSX_BUILD_DIR=`pwd`"/dist"
 RPM_BUILD_DIR=`pwd`"/build"
-DEB_BUILD_DIR="debian/gitso"
-DEB_TARGZ_PATH="gitso"
+DEB_BUILD_DIR="debian/oops"
+DEB_TARGZ_PATH="oops"
 
 CLEAN="yes"
 RPMNAME=""
@@ -225,13 +229,13 @@ do
 		CLEAN="no"
 	elif test "${param}" = "--fedora"; then
 		RPMNAME="fedora"
-		RPMOUT="gitso_0.6.2-1_fedora.i386.rpm"
+		RPMOUT="oops_0.6.2-1_fedora.i386.rpm"
 	elif test "${param}" = "--centos"; then
 		RPMNAME="centos"
-		RPMOUT="gitso_0.6.2-1_centos.i386.rpm"
+		RPMOUT="oops_0.6.2-1_centos.i386.rpm"
 	elif test "${param}" = "--opensuse"; then
 		RPMNAME="opensuse"
-		RPMOUT="gitso_0.6.2-1_opensuse.i586.rpm"
+		RPMOUT="oops_0.6.2-1_opensuse.i586.rpm"
 	elif test "${param}" = "--source"; then
 		USESRC="yes"
 	else
@@ -245,7 +249,7 @@ done
 ########################
 if [ "$USESRC" = "yes" ]; then
 	# Creating the source
-	echo -n "Creating gitso $SRC...."
+	echo -n "Creating oops $SRC...."
 	mksrc
 	echo -e " [done]\n"
 
@@ -257,15 +261,15 @@ elif [ "`uname -a | grep Darwin`" != "" ]; then
 		# cvs -z3 -d:pserver:anonymous@cotvnc.cvs.sourceforge.net:/cvsroot/cotvnc co -P cotvnc
 		#
 		# cd cotvnc
-		# patch -p0 < [Gitso-path]/arch/osx/cotvnc-gitso.diff
+		# patch -p0 < [Oops-path]/arch/osx/cotvnc-oops.diff
 		#
 		# Then in xCode build cotvnc
 		# find build/Development/
 		# rename Chicken Of The VNC.app to cotvnc.app
 		# remove cotvnc.app/Contents/Resources/*non English.lproj
 		# rename cotvnc.app/Contents/MacOS/Chicken Of The VNC to cotvnc.app/Contents/MacOS/cotvnc
-		# 
-		# Patch was made with: diff -aurr . ../cotvnc-gitso/ > cotvnc-gitso.diff
+		#
+		# Patch was made with: diff -aurr . ../cotvnc-oops/ > cotvnc-oops.diff
 		#
 		LeopardDMG
 		snowLeopardDMG
@@ -277,12 +281,12 @@ elif test "`uname -a 2>&1 | grep Linux | grep -v which`"; then
 	#We're on Linux
 	
 	if test "`which dpkg 2>&1 | grep -v which`"; then
-		# Deb version of Gitso.
+		# Deb version of Oops.
 		echo -n "Creating $DEB"
 		dpkg-buildpackage -us -uc -d -b
 		echo -e " [done]"
 	
-		# Standalone version of Gitso.
+		# Standalone version of Oops.
 		echo -n "Creating $TARGZ"
 		rm -rf $DEB_TARGZ_PATH
 		
@@ -291,7 +295,7 @@ elif test "`uname -a 2>&1 | grep Linux | grep -v which`"; then
 	
 		echo -n ".."
 		cp arch/linux/README-stand-alone.txt $DEB_TARGZ_PATH/README
-		cp arch/linux/run-gitso.sh $DEB_TARGZ_PATH/
+		cp arch/linux/run-oops.sh $DEB_TARGZ_PATH/
 		mv $DEB_TARGZ_PATH/usr/bin $DEB_TARGZ_PATH/bin
 		mv $DEB_TARGZ_PATH/usr/share $DEB_TARGZ_PATH/share
 		rm -rf $DEB_TARGZ_PATH/usr/
@@ -302,14 +306,14 @@ elif test "`uname -a 2>&1 | grep Linux | grep -v which`"; then
 		echo -e " [done]\n"
 		
 	elif test "`which rpm 2>&1 | grep -v which`"; then
-		# RPM version of Gitso
+		# RPM version of Oops
 		if [ "$RPMNAME" = "fedora" ]; then
-			SPEC="gitso_rpm_fedora.spec"
-			# yum --nogpgcheck install gitso_0.6.2-1_fedora.i386.rpm 
+			SPEC="oops_rpm_fedora.spec"
+			# yum --nogpgcheck install oops_0.6.2-1_fedora.i386.rpm
 		elif [ "$RPMNAME" = "opensuse" ]; then
-			SPEC="gitso_rpm.spec"
+			SPEC="oops_rpm.spec"
 		elif [ "$RPMNAME" = "centos" ]; then
-			SPEC="gitso_rpm_centos.spec"
+			SPEC="oops_rpm_centos.spec"
 		else
 		    echo -e "Error: Invalid RPM Type: '$RPMNAME'\n\tPlease specify one of the following:\n\t--opensuse\n\t--fedora\n"
 		    exit 1
@@ -318,7 +322,7 @@ elif test "`uname -a 2>&1 | grep Linux | grep -v which`"; then
 		echo "Creating $RPM"
 		export RPM_BUILD_DIR=$RPM_BUILD_DIR
 		TMP="$RPM_BUILD_DIR/rpm/tmp"
-		BUILD_ROOT="$RPM_BUILD_DIR/rpm/tmp/gitso-root"
+		BUILD_ROOT="$RPM_BUILD_DIR/rpm/tmp/oops-root"
 
 		# We need this because the rpmbuild below needs to the source ball.
 		# Also realize that mksrc is going to clean-up, so if you creat diste files before this line
@@ -336,12 +340,12 @@ elif test "`uname -a 2>&1 | grep Linux | grep -v which`"; then
 		if [ "$RPMNAME" = "fedora" ]; then
 			rpmbuild -ba $TMP/$SPEC
 		elif [ "$RPMNAME" = "opensuse" ]; then
-			export RPM_BUILD_ROOT="$HOME/rpmbuild/BUILDROOT/gitso-0.6.2-1.i386"
+			export RPM_BUILD_ROOT="$HOME/rpmbuild/BUILDROOT/oops-0.6.2-1.i386"
 			rpmbuild -ba --buildroot=$RPM_BUILD_ROOT $TMP/$SPEC
 		elif [ "$RPMNAME" = "centos" ]; then
-			export RPM_BUILD_ROOT="$HOME/rpmbuild/BUILDROOT/gitso-0.6.2-1.i386"
+			export RPM_BUILD_ROOT="$HOME/rpmbuild/BUILDROOT/oops-0.6.2-1.i386"
 			rpmbuild -ba --buildroot=$RPM_BUILD_ROOT $TMP/$SPEC
-		fi	
+		fi
 		
 		find $RPM_BUILD_DIR/rpm/RPMS -name "*.rpm" -exec cp {} $RPMOUT ';'
 
@@ -359,4 +363,3 @@ if [ "$CLEAN" = "yes" ]; then
 	find . -name "*.pyc" -exec rm {} ';'
 	echo -e " [done]\n"
 fi
-

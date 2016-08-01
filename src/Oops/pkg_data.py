@@ -1,6 +1,8 @@
 """
 Oops - Oops is to support others
 
+Copyright 2016 Raster Software Vigo
+
 Oops is a utility to facilitate the connection of VNC
 
 Based on Gitso, from Aaron Gerber and Derek Buranen, @copyright: 2008 - 2010

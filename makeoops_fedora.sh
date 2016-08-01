@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python2 setup.py bdist_rpm --binary-only
+python3 setup.py bdist_rpm --binary-only
