@@ -121,9 +121,12 @@ class ConnectionWindow(object):
 		sys.exit(0)
 
 
-	def optionChanged(self):
+	def optionChanged(self, disable_all = False):
 		
-		if self.opcion.get() == 0:
+		if disable_all:
+			self.displayHostBox["state"] = tkinter.DISABLED
+			self.cb_lowcolors["state"] = tkinter.DISABLED
+		elif self.opcion.get() == 0:
 		    self.displayHostBox["state"] = tkinter.NORMAL
 		    self.cb_lowcolors["state"] = tkinter.DISABLED
 		else:
@@ -213,11 +216,12 @@ class ConnectionWindow(object):
 		if status:
 			self.connectButton["state"] = tkinter.DISABLED
 			self.stopButton["state"] = tkinter.NORMAL
+			self.optionChanged(True)
 		else:
 			self.connectButton["state"] = tkinter.NORMAL
 			self.stopButton["state"] = tkinter.DISABLED
+			self.optionChanged(False)
 
-		self.optionChanged()
 
 	def check_wm(self):
 

@@ -65,7 +65,7 @@ class ArgsParser:
 			if sys.argv[i] == '--help': # --help
 				self.HelpMenu()
 			elif sys.argv[i] == '--version': # --version
-				print(_("Oops {:s}  -- Copyright 2007 - 2014 Aaron Gerber and Derek Buranen and AustP.").format(pkg_data.get_version()))
+				print(_("Oops {:s}  -- Copyright 2016 Sergio Costas Rodriguez;\nbased on Gitso, from Aaron Gerber and Derek Buranen @copyright: 2008 - 2010.").format(pkg_data.get_version()))
 				exit(0)
 			elif sys.argv[i] == '--dev': # --dev
 				print(_("Running in 'Development Mode'"))

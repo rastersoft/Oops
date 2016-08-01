@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-15 14:43+0200\n"
+"POT-Creation-Date: 2016-08-01 16:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,271 +17,233 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/Gitso/AboutWindow.py:105
-msgid "Gitso is to Support Others"
+#: ../src/Oops/AboutWindow.py:38 ../src/Oops/AboutWindow.py:39
+msgid "Oops is to Support Others"
 msgstr ""
 
-#: ../src/Gitso/AboutWindow.py:106
-#, python-format
-msgid "Version %s"
+#: ../src/Oops/AboutWindow.py:39
+msgid "Version {:s}"
 msgstr ""
 
-#: ../src/Gitso/AboutWindow.py:147
-msgid "Authors"
+#: ../src/Oops/AboutWindow.py:45
+msgid "Copyright"
 msgstr ""
 
-#: ../src/Gitso/AboutWindow.py:148
+#: ../src/Oops/AboutWindow.py:47
 msgid "License"
 msgstr ""
 
+#: ../src/Oops/AboutWindow.py:293
+msgid "Close"
+msgstr ""
+
 #. --version
-#: ../src/Gitso/ArgsParser.py:70
-#, python-format
+#: ../src/Oops/ArgsParser.py:68
 msgid ""
-"Gitso %s  -- Copyright 2007 - 2014 Aaron Gerber and Derek Buranen and AustP."
+"Oops {:s}  -- Copyright 2016 Sergio Costas Rodriguez;\n"
+"based on Gitso, from Aaron Gerber and Derek Buranen @copyright: 2008 - 2010."
 msgstr ""
 
 #. --dev
-#: ../src/Gitso/ArgsParser.py:73
+#: ../src/Oops/ArgsParser.py:71
 msgid "Running in 'Development Mode'"
 msgstr ""
 
-#: ../src/Gitso/ArgsParser.py:97 ../src/Gitso/ArgsParser.py:119
+#: ../src/Oops/ArgsParser.py:95 ../src/Oops/ArgsParser.py:106
 msgid "Error: --connect and --listen can not be used at the same time"
 msgstr ""
 
-#: ../src/Gitso/ArgsParser.py:115
+#: ../src/Oops/ArgsParser.py:102
 msgid "Error: No IP or domain name given"
 msgstr ""
 
-#: ../src/Gitso/ArgsParser.py:125
-#, python-format
-msgid "Error: '%s' is not a valid host with '--connect'"
+#: ../src/Oops/ArgsParser.py:112
+msgid "Error: '{:s}' is not a valid host with '--connect'"
 msgstr ""
 
-#: ../src/Gitso/ArgsParser.py:134
+#: ../src/Oops/ArgsParser.py:121
 msgid "Error: No List file given"
 msgstr ""
 
-#: ../src/Gitso/ArgsParser.py:140
-#, python-format
-msgid "Error: '%s' is not a valid list with '--list'"
+#: ../src/Oops/ArgsParser.py:127
+msgid "Error: '{:s}' is not a valid list with '--list'"
 msgstr ""
 
-#: ../src/Gitso/ArgsParser.py:144
-#, python-format
-msgid "Error: '%s' is not a valid argument"
+#: ../src/Oops/ArgsParser.py:131
+msgid "Error: '{:s}' is not a valid argument"
 msgstr ""
 
-#: ../src/Gitso/ArgsParser.py:163
+#: ../src/Oops/ArgsParser.py:150
 msgid "\t--dev\t\tSet self.paths for development"
 msgstr ""
 
-#: ../src/Gitso/ArgsParser.py:164
-#, python-brace-format
-msgid "\t--listen {PORT}\tListen for incoming connections"
+#: ../src/Oops/ArgsParser.py:151
+msgid "\t--listen\tListen for incoming connections"
 msgstr ""
 
-#: ../src/Gitso/ArgsParser.py:165
+#: ../src/Oops/ArgsParser.py:152
 msgid "\t--connect {IP|DN}\tConnects to host (support giver)"
 msgstr ""
 
-#: ../src/Gitso/ArgsParser.py:166
+#: ../src/Oops/ArgsParser.py:153
 msgid "\t--list {URL|FILE}\tAlternative Support list"
 msgstr ""
 
-#: ../src/Gitso/ArgsParser.py:167
+#: ../src/Oops/ArgsParser.py:154
 msgid "\t--low-colors\t\tUse 8bit colors (for slow connections). Linux only"
 msgstr ""
 
-#: ../src/Gitso/ArgsParser.py:168
-msgid "\t--version\t\tThe current Gitso version"
+#: ../src/Oops/ArgsParser.py:155
+msgid "\t--version\t\tThe current Oops version"
 msgstr ""
 
-#: ../src/Gitso/ArgsParser.py:169
+#: ../src/Oops/ArgsParser.py:156
 msgid "\t--help\t\tThis Menu"
 msgstr ""
 
-#: ../src/Gitso/Processes.py:51
+#: ../src/Oops/Processes.py:51
 msgid "Launched WinVNC.exe, waiting to run -connect command..."
 msgstr ""
 
-#: ../src/Gitso/Processes.py:60 ../src/Gitso/Processes.py:84
+#: ../src/Oops/Processes.py:58 ../src/Oops/Processes.py:82
 msgid "Platform not detected"
 msgstr ""
 
-#: ../src/Gitso/Processes.py:96
+#: ../src/Oops/Processes.py:97
 #, python-format
 msgid "Processes.KillPID(%s)"
 msgstr ""
 
-#: ../src/Gitso/GitsoThread.py:57
-msgid "Connected."
+#: ../src/Oops/ConnectionWindow.py:61
+msgid "Exit"
 msgstr ""
 
-#: ../src/Gitso/GitsoThread.py:59
-msgid "Could not connect."
+#: ../src/Oops/ConnectionWindow.py:62
+msgid "File"
 msgstr ""
 
-#: ../src/Gitso/GitsoThread.py:72
-msgid "Server running."
+#: ../src/Oops/ConnectionWindow.py:65
+msgid "Cut"
 msgstr ""
 
-#: ../src/Gitso/GitsoThread.py:74
-msgid "Could not start server."
+#: ../src/Oops/ConnectionWindow.py:66
+msgid "Copy"
 msgstr ""
 
-#: ../src/Gitso/GitsoThread.py:77
-#, python-format
-msgid "GitsoThread.run(pid: %s) running..."
+#: ../src/Oops/ConnectionWindow.py:67
+msgid "Paste"
 msgstr ""
 
-#: ../src/Gitso/GitsoThread.py:83 ../src/Gitso/ConnectionWindow.py:160
-#: ../src/Gitso/ConnectionWindow.py:307
-msgid "Idle"
+#: ../src/Oops/ConnectionWindow.py:68
+msgid "Edit"
 msgstr ""
 
-#: ../src/Gitso/ConnectionWindow.py:39
-msgid "Restore Gitso"
+#: ../src/Oops/ConnectionWindow.py:71
+msgid "About"
 msgstr ""
 
-#: ../src/Gitso/ConnectionWindow.py:40 ../src/Gitso/ConnectionWindow.py:141
-msgid "Quit Gitso"
-msgstr ""
-
-#. Buttons
-#: ../src/Gitso/ConnectionWindow.py:90
-msgid "Start"
+#: ../src/Oops/ConnectionWindow.py:72
+msgid "Help"
 msgstr ""
 
 #. Radio Boxes
-#: ../src/Gitso/ConnectionWindow.py:98
+#: ../src/Oops/ConnectionWindow.py:77
 msgid "Get Help"
 msgstr ""
 
-#: ../src/Gitso/ConnectionWindow.py:99
+#: ../src/Oops/ConnectionWindow.py:78
 msgid "Give Support"
 msgstr ""
 
-#: ../src/Gitso/ConnectionWindow.py:108
-msgid "Use NAT-PMP"
-msgstr ""
-
-#. Checkbox for low color
-#: ../src/Gitso/ConnectionWindow.py:112
+#: ../src/Oops/ConnectionWindow.py:81
 msgid "Use low colors"
 msgstr ""
 
+#. self.sampleList,
 #. Get Help
-#: ../src/Gitso/ConnectionWindow.py:122 ../src/Gitso/ConnectionWindow.py:213
+#: ../src/Oops/ConnectionWindow.py:86 ../src/Oops/ConnectionWindow.py:149
 msgid "Enter/Select Support Address"
 msgstr ""
 
-#: ../src/Gitso/ConnectionWindow.py:129
-msgid "&Cut\tCtrl+X"
+#. Buttons
+#: ../src/Oops/ConnectionWindow.py:104
+msgid "Start"
 msgstr ""
 
-#: ../src/Gitso/ConnectionWindow.py:129
-msgid "Cut IP Address"
+#: ../src/Oops/ConnectionWindow.py:105
+msgid "Stop"
 msgstr ""
 
-#: ../src/Gitso/ConnectionWindow.py:130
-msgid "&Copy\tCtrl+C"
+#: ../src/Oops/ConnectionWindow.py:110 ../src/Oops/ConnectionWindow.py:183
+#: ../src/Oops/ConnectionWindow.py:226
+msgid "Idle"
 msgstr ""
 
-#: ../src/Gitso/ConnectionWindow.py:130
-msgid "Copy IP Address"
-msgstr ""
-
-#: ../src/Gitso/ConnectionWindow.py:131
-msgid "&Paste\tCtrl+V"
-msgstr ""
-
-#: ../src/Gitso/ConnectionWindow.py:131
-msgid "Paste IP Address"
-msgstr ""
-
-#: ../src/Gitso/ConnectionWindow.py:136
-msgid "&Clear History"
-msgstr ""
-
-#: ../src/Gitso/ConnectionWindow.py:136
-msgid "Clear History"
-msgstr ""
-
-#: ../src/Gitso/ConnectionWindow.py:138 ../src/Gitso/ConnectionWindow.py:145
-msgid "&About"
-msgstr ""
-
-#: ../src/Gitso/ConnectionWindow.py:138 ../src/Gitso/ConnectionWindow.py:145
-#: ../src/Gitso/ConnectionWindow.py:243
-msgid "About Gitso"
-msgstr ""
-
-#: ../src/Gitso/ConnectionWindow.py:141
-msgid "&Quit\tCtrl+Q"
-msgstr ""
-
-#: ../src/Gitso/ConnectionWindow.py:150
-msgid "&File"
-msgstr ""
-
-#: ../src/Gitso/ConnectionWindow.py:151
-msgid "&Edit"
-msgstr ""
-
-#: ../src/Gitso/ConnectionWindow.py:154
-msgid "&Help"
-msgstr ""
-
-#: ../src/Gitso/ConnectionWindow.py:214
+#: ../src/Oops/ConnectionWindow.py:150
 msgid "Connecting..."
 msgstr ""
 
-#: ../src/Gitso/ConnectionWindow.py:230
+#: ../src/Oops/ConnectionWindow.py:155
 msgid "Invalid Support Address"
 msgstr ""
 
 #. Give Suppport
-#: ../src/Gitso/ConnectionWindow.py:232
+#: ../src/Oops/ConnectionWindow.py:157
 msgid "Starting Server..."
 msgstr ""
 
-#: ../src/Gitso/NATPMP.py:81
+#: ../src/Oops/ConnectionWindow.py:168
+msgid "About Oops"
+msgstr ""
+
+#: ../src/Oops/ConnectionWindow.py:266
+msgid "Connected."
+msgstr ""
+
+#: ../src/Oops/ConnectionWindow.py:276
+msgid "Server running."
+msgstr ""
+
+#: ../src/Oops/ConnectionWindow.py:278
+#, python-format
+msgid "OopsThread.run(pid: %s) running..."
+msgstr ""
+
+#: ../src/Oops/NATPMP.py:81
 msgid "No error"
 msgstr ""
 
-#: ../src/Gitso/NATPMP.py:82
+#: ../src/Oops/NATPMP.py:82
 msgid "The protocol version specified is unsupported"
 msgstr ""
 
-#: ../src/Gitso/NATPMP.py:83
+#: ../src/Oops/NATPMP.py:83
 msgid "The operation was refused.  NAT-PMP may be turned off on gateway"
 msgstr ""
 
-#: ../src/Gitso/NATPMP.py:84
+#: ../src/Oops/NATPMP.py:84
 msgid "There was a network failure.  The gateway may not have an IP address"
 msgstr ""
 
 #. Network Failure
-#: ../src/Gitso/NATPMP.py:85
+#: ../src/Oops/NATPMP.py:85
 msgid "The NAT-PMP gateway is out of resources and cannot create more mappings"
 msgstr ""
 
 #. can not create more mappings
-#: ../src/Gitso/NATPMP.py:86
+#: ../src/Oops/NATPMP.py:86
 msgid "The NAT-PMP gateway does not support this operation"
 msgstr ""
 
 #. not a supported opcode
-#: ../src/Gitso/NATPMP.py:87
+#: ../src/Oops/NATPMP.py:87
 msgid "The gateway does not support NAT-PMP"
 msgstr ""
 
-#: ../src/Gitso/NATPMP.py:88
+#: ../src/Oops/NATPMP.py:88
 msgid "No valid gateway address was specified"
 msgstr ""
 
-#: ../src/Gitso/NATPMP.py:89
+#: ../src/Oops/NATPMP.py:89
 msgid "Cannot automatically determine gateway address.  Must specify manually"
 msgstr ""

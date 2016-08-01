@@ -35,7 +35,7 @@ class AboutWindow():
 
 		self.top = tkinter.Toplevel()
 		self.top.iconphoto(True, tkinter.PhotoImage(file=os.path.join(paths['main'],'oops.png')))
-		self.top.title(_("Newoops is to Support Others"))
+		self.top.title(_("Oops is to Support Others"))
 		text1 = tkinter.Label(self.top, text = "Oops\n"+_("Oops is to Support Others")+"\n"+_("Version {:s}".format(Oops.pkg_data.get_version())))
 		text1.pack(side = tkinter.TOP, fill = tkinter.X)
 
