@@ -1,23 +1,17 @@
-#Gitso
+#Oops
 
-Gitso is a frontend to reverse VNC connections. It is meant to be a simple two-step process that connects one person to another's screen.
+Oops is a frontend for reverse VNC connections. It is meant to be a simple two-step process that connects one person to another's screen.
 
-Original Project is kept at: https://code.google.com/p/gitso/
-
-Few changes made by AustP:
-
-+ Minimization now minimizes to the task tray
-+ When using the command line switch --listen, Gitso starts minimized
-
-Changes made by Rastersoft:
+It is based on Gitso. The original project is kept at: https://code.google.com/p/gitso/
 
 + Internationalization and localization support
-+ Fixed the interface in Linux (some elements where put outside the window)
++ Changed the interface from wxWidgets to TkInter, which also fixed the interface in Linux (some elements where put outside the window)
++ Now deletes the text in the address entry when the user clicks on it
 
-##Building Gitso
+##Building Oops
 ####Windows
-In the src folder you will find instructions on how to build Gitso on Windows along with installation files.
-**You may have to change some paths in *makegitso.bat*** depending on your installation.
+In the src folder you will find instructions on how to build Oops on Windows along with installation files.
+**You may have to change some paths in *makeoops.bat*** depending on your installation.
 
 ####Mac
 These instructions have been taken from https://code.google.com/p/gitso/wiki/BuildOSX
@@ -29,18 +23,17 @@ These instructions have been taken from https://code.google.com/p/gitso/wiki/Bui
 5. sudo python ez_setup.py -U setuptools
 6. sudo easy_install -U py2app
 7. Update hosts.txt to have preset options for the client. Hosts are comma separated and optional.
-8. Run: ./makegitso.sh
+8. Run: ./makeoops.sh
 
 ####Linux
 These instructions have been taken from https://code.google.com/p/gitso/wiki/BuildLinux
 
 **Non Ubuntu, Fedora, and OpenSUSE Users**
  
-Gitso requires the following files so make sure to install them:
+Oops requires the following files so make sure to install them:
 
 + x11vnc
 + vncviewer
-+ wxPython
 
 **Fedora Users**
 
@@ -49,7 +42,4 @@ Gitso requires the following files so make sure to install them:
 
 **Debian/Ubuntu packages**
 
-Install *python-stdeb* to allow pysetup to create DEB packages, and run *makegitso_debian.sh*.
-
-##Disclaimer
-Gitso is NOT my project, but other's. I'm creating a fork, but still don't have a name for it.
+Install *python-stdeb* to allow pysetup to create DEB packages, and run *makeoops_debian.sh*.

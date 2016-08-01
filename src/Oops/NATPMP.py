@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """NAT-PMP client library
 
@@ -6,7 +6,7 @@ Provides functions to interact with NAT-PMP gateways implementing version 0
 of the NAT-PMP draft specification.
 
 This version does not completely implement the draft standard.
-* It does not provide functionality to listen for address change packets. 
+* It does not provide functionality to listen for address change packets.
 * It does not have a proper request queuing system, meaning that
 multiple requests may be issued in parallel, against spec recommendations.
 
@@ -126,7 +126,7 @@ class PortMapRequest(NATPMPRequest):
         self.lifetime = lifetime
 
     def toBytes(self):
-        s= NATPMPRequest.toBytes(self) + struct.pack('!HHHI', NATPMP_RESERVED_VAL, self.private_port, self.public_port, self.lifetime)  
+        s= NATPMPRequest.toBytes(self) + struct.pack('!HHHI', NATPMP_RESERVED_VAL, self.private_port, self.public_port, self.lifetime)
         return s
 
 class NATPMPResponse(object):
@@ -369,5 +369,5 @@ def send_request_with_retry(gateway_ip, request, response_data_class=None, retry
 if __name__ == "__main__":
     addr = get_public_address()
     map_resp = map_tcp_port(62001, 62001)
-    print addr
-    print map_resp.__dict__
+    print(addr)
+    print(map_resp.__dict__)
