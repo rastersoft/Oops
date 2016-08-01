@@ -19,7 +19,7 @@
 :: You should have received a copy of the GNU General Public License
 :: along with Oops.  If not, see <http://www.gnu.org/licenses/>.
 
-"C:\Python35\python" setup.py py2exe
+"C:\Python34\python" setup.py py2exe
 
 "C:\Program Files (x86)\NSIS\makensis.exe" /X"SetCompressor /FINAL /SOLID lzma " makeoops.nsi
 :: rd build /s /q
