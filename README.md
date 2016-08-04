@@ -4,6 +4,8 @@ RemoteH is a frontend for reverse VNC connections. It is meant to be a simple tw
 
 It is based on Gitso. The original project is kept at: https://code.google.com/p/gitso/
 
+The main changes are:
+
 + Internationalization and localization support
 + Changed the interface from wxWidgets to TkInter, which also fixed the interface in Linux (some elements where put outside the window)
 + Now deletes the text in the address entry when the user clicks on it
