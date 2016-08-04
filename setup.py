@@ -1,24 +1,24 @@
 #! /usr/bin/env python3
 
 """
-Oops - Oops is to support others
+RemoteH - RemoteH is to support others
 
-Oops is a utility to facilitate the connection of VNC
+RemoteH is a utility to facilitate the connection of VNC
 
 Based on Gitso, from Aaron Gerber and Derek Buranen, @copyright: 2008 - 2010
 
-Oops is free software: you can redistribute it and/or modify
+RemoteH is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-Oops is distributed in the hope that it will be useful,
+RemoteH is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Oops.  If not, see <http://www.gnu.org/licenses/>.
+along with RemoteH.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import os
@@ -65,19 +65,19 @@ def get_data_files():
     data_files = []
 
     if platform == 'unix':
-        data_files.append((os.path.join('.','share','icons','hicolor','512x512','apps'),['data/icons/oops.png']))
-        data_files.append((os.path.join('.','share','applications'),['data/oops.desktop']))
+        data_files.append((os.path.join('.','share','icons','hicolor','512x512','apps'),['data/icons/remoteh.png']))
+        data_files.append((os.path.join('.','share','applications'),['data/remoteh.desktop']))
     if platform == "windows":
-        data_files.append((os.path.join('.'),['data/icons/oops.ico']))
-        data_files.append((os.path.join('.'),['data/icons/oops.png']))
+        data_files.append((os.path.join('.'),['data/icons/remoteh.ico']))
+        data_files.append((os.path.join('.'),['data/icons/remoteh.png']))
     else:
-        data_files.append((os.path.join('.','share','oops'),['data/icons/oops.ico']))
-        data_files.append((os.path.join('.','share','oops'),['data/icons/oops.png']))
-    data_files.append((os.path.join('.','share','doc','oops'),['COPYING']))
+        data_files.append((os.path.join('.','share','remoteh'),['data/icons/remoteh.ico']))
+        data_files.append((os.path.join('.','share','remoteh'),['data/icons/remoteh.png']))
+    data_files.append((os.path.join('.','share','doc','remoteh'),['COPYING']))
 
     try:
         for lang_name in [f for f in os.listdir('locale')]:
-            mofile = os.path.join('locale', lang_name,'LC_MESSAGES','oops.mo')
+            mofile = os.path.join('locale', lang_name,'LC_MESSAGES','remoteh.mo')
             # translations must be always in /usr/share because Gtk.builder only search there. If someone knows how to fix this...
             if platform == 'windows':
                 target = os.path.join('.','locale', lang_name, 'LC_MESSAGES') # share/locale/fr/LC_MESSAGES/
@@ -99,7 +99,7 @@ def compile_translations():
     
                 lang = os.path.basename(pofile)[:-3] # len('.po') == 3
                 modir = os.path.join('locale', lang, 'LC_MESSAGES') # e.g. locale/fr/LC_MESSAGES/
-                mofile = os.path.join(modir, 'oops.mo') # e.g. locale/fr/LC_MESSAGES/devede_ng.mo
+                mofile = os.path.join(modir, 'remoteh.mo') # e.g. locale/fr/LC_MESSAGES/devede_ng.mo
     
                 # create an architecture for these locales
                 if not os.path.isdir(modir):
@@ -117,19 +117,19 @@ compile_translations()
 
 params_setup = {}
 
-params_setup['name'] = 'oops'
+params_setup['name'] = 'remoteh'
 params_setup['version'] = '0.1.0'
-params_setup['description']='Oops is to support others'
+params_setup['description']='RemoteH is to support others'
 params_setup['long_description']="A program to simplify using reverse VNC"
 params_setup['license']='GPLv3'
 params_setup['data_files'] = get_data_files()
-params_setup['packages']=['Oops']
-params_setup['package_dir'] = {"Oops" : "src/Oops"}
+params_setup['packages']=['RemoteH']
+params_setup['package_dir'] = {"RemoteH" : "src/RemoteH"}
 
 
 if platform == 'windows':
-    params_setup['windows'] = [{"script":"src/oops.py", "icon_resources":[(1,"data/icons/oops.ico")]}]
+    params_setup['windows'] = [{"script":"src/remoteh.py", "icon_resources":[(1,"data/icons/remoteh.ico")]}]
 else:
-    params_setup['scripts']=['src/oops.py']
+    params_setup['scripts']=['src/remoteh.py']
 
 setup(**params_setup)

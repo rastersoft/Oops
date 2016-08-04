@@ -1,42 +1,42 @@
 #!/usr/bin/env python3
 
 import os, os.path, sys
-import Oops.pkg_data
+import RemoteH.pkg_data
 from gettext import gettext as _
 import tkinter
 import tkinter.ttk
 
 """
-Oops - Oops is to support others
+RemoteH - RemoteH is to support others
 
 Copyright 2016 Raster Software Vigo
 
-Oops is a utility to facilitate the connection of VNC
+RemoteH is a utility to facilitate the connection of VNC
 
 Based on Gitso, from Aaron Gerber and Derek Buranen, @copyright: 2008 - 2010
 
-Oops is free software: you can redistribute it and/or modify
+RemoteH is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-Oops is distributed in the hope that it will be useful,
+RemoteH is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Oops.  If not, see <http://www.gnu.org/licenses/>.
+along with RemoteH.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 class AboutWindow():
 	def __init__(self, paths):
-		"""	Setup About Window for Oops """
+		"""	Setup About Window for RemoteH """
 
 		self.top = tkinter.Toplevel()
-		self.top.iconphoto(True, tkinter.PhotoImage(file=os.path.join(paths['main'],'oops.png')))
-		self.top.title(_("Oops is to Support Others"))
-		text1 = tkinter.Label(self.top, text = "Oops\n"+_("Oops is to Support Others")+"\n"+_("Version {:s}".format(Oops.pkg_data.get_version())))
+		self.top.iconphoto(True, tkinter.PhotoImage(file=os.path.join(paths['main'],'remoteh.png')))
+		self.top.title(_("RemoteH is to Support Others"))
+		text1 = tkinter.Label(self.top, text = "RemoteH\n"+_("RemoteH is to Support Others")+"\n"+_("Version {:s}".format(RemoteH.pkg_data.get_version())))
 		text1.pack(side = tkinter.TOP, fill = tkinter.X)
 
 		notebook = tkinter.ttk.Notebook(self.top)

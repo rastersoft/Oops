@@ -19,235 +19,235 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 2.91.7\n"
 
-#: ../src/Oops/AboutWindow.py:38 ../src/Oops/AboutWindow.py:39
-msgid "Oops is to Support Others"
-msgstr "Oops, para dar soporte a otros"
+#: ../src/RemoteH/AboutWindow.py:38 ../src/RemoteH/AboutWindow.py:39
+msgid "RemoteH is to Support Others"
+msgstr "RemoteH, para dar soporte a otros"
 
-#: ../src/Oops/AboutWindow.py:39
+#: ../src/RemoteH/AboutWindow.py:39
 msgid "Version {:s}"
 msgstr "Versión {%s}"
 
-#: ../src/Oops/AboutWindow.py:45
+#: ../src/RemoteH/AboutWindow.py:45
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../src/Oops/AboutWindow.py:47
+#: ../src/RemoteH/AboutWindow.py:47
 msgid "License"
 msgstr "Licencia"
 
-#: ../src/Oops/AboutWindow.py:293
+#: ../src/RemoteH/AboutWindow.py:293
 msgid "Close"
 msgstr "Cerrar"
 
 #. --version
-#: ../src/Oops/ArgsParser.py:68
+#: ../src/RemoteH/ArgsParser.py:68
 msgid ""
-"Oops {:s}  -- Copyright 2016 Sergio Costas Rodriguez;\n"
+"RemoteH {:s}  -- Copyright 2016 Sergio Costas Rodriguez;\n"
 "based on Gitso, from Aaron Gerber and Derek Buranen @copyright: 2008 - 2010."
 msgstr ""
-"Oops {:s}  -- Copyright 2016 Sergio Costas Rodríguez;\n"
+"RemoteH {:s}  -- Copyright 2016 Sergio Costas Rodríguez;\n"
 "basado en Gitso, de Aaron Gerber y Derek Buranen @copyright: 2008 - 2010"
 
 #. --dev
-#: ../src/Oops/ArgsParser.py:71
+#: ../src/RemoteH/ArgsParser.py:71
 msgid "Running in 'Development Mode'"
 msgstr "Ejecutándose en 'Modo desarrollador'"
 
-#: ../src/Oops/ArgsParser.py:95 ../src/Oops/ArgsParser.py:106
+#: ../src/RemoteH/ArgsParser.py:95 ../src/RemoteH/ArgsParser.py:106
 msgid "Error: --connect and --listen can not be used at the same time"
 msgstr "Error: --connect y --listen no se pueden usar a la vez"
 
-#: ../src/Oops/ArgsParser.py:102
+#: ../src/RemoteH/ArgsParser.py:102
 msgid "Error: No IP or domain name given"
 msgstr "Error: no se ha indicado un dominio o dirección IP"
 
-#: ../src/Oops/ArgsParser.py:112
+#: ../src/RemoteH/ArgsParser.py:112
 msgid "Error: '{:s}' is not a valid host with '--connect'"
 msgstr "Error: '{:s}' no es un host válido para usar con '--connect'"
 
-#: ../src/Oops/ArgsParser.py:121
+#: ../src/RemoteH/ArgsParser.py:121
 msgid "Error: No List file given"
 msgstr "Error: no se ha indicado un fichero con la lista"
 
-#: ../src/Oops/ArgsParser.py:127
+#: ../src/RemoteH/ArgsParser.py:127
 msgid "Error: '{:s}' is not a valid list with '--list'"
 msgstr "Error: '{:s}' no es una lista válida para '--list'"
 
-#: ../src/Oops/ArgsParser.py:131
+#: ../src/RemoteH/ArgsParser.py:131
 msgid "Error: '{:s}' is not a valid argument"
 msgstr "Error: '{:s}' no es un parámetro válido"
 
-#: ../src/Oops/ArgsParser.py:150
+#: ../src/RemoteH/ArgsParser.py:150
 msgid "\t--dev\t\tSet self.paths for development"
 msgstr ""
 
-#: ../src/Oops/ArgsParser.py:151
+#: ../src/RemoteH/ArgsParser.py:151
 msgid "\t--listen\tListen for incoming connections"
 msgstr ""
 
-#: ../src/Oops/ArgsParser.py:152
+#: ../src/RemoteH/ArgsParser.py:152
 msgid "\t--connect {IP|DN}\tConnects to host (support giver)"
 msgstr ""
 
-#: ../src/Oops/ArgsParser.py:153
+#: ../src/RemoteH/ArgsParser.py:153
 msgid "\t--list {URL|FILE}\tAlternative Support list"
 msgstr ""
 
-#: ../src/Oops/ArgsParser.py:154
+#: ../src/RemoteH/ArgsParser.py:154
 msgid "\t--low-colors\t\tUse 8bit colors (for slow connections). Linux only"
 msgstr ""
 
-#: ../src/Oops/ArgsParser.py:155
-msgid "\t--version\t\tThe current Oops version"
+#: ../src/RemoteH/ArgsParser.py:155
+msgid "\t--version\t\tThe current RemoteH version"
 msgstr ""
 
-#: ../src/Oops/ArgsParser.py:156
+#: ../src/RemoteH/ArgsParser.py:156
 msgid "\t--help\t\tThis Menu"
 msgstr ""
 
-#: ../src/Oops/Processes.py:51
+#: ../src/RemoteH/Processes.py:51
 msgid "Launched WinVNC.exe, waiting to run -connect command..."
 msgstr "Lanzado WinVNC.exe, esperando a que se ejecute el comando -connect..."
 
-#: ../src/Oops/Processes.py:58 ../src/Oops/Processes.py:82
+#: ../src/RemoteH/Processes.py:58 ../src/RemoteH/Processes.py:82
 msgid "Platform not detected"
 msgstr "Plataforma desconocida"
 
-#: ../src/Oops/Processes.py:97
+#: ../src/RemoteH/Processes.py:97
 #, python-format
 msgid "Processes.KillPID(%s)"
 msgstr "Processes.KillPID(%s)"
 
-#: ../src/Oops/ConnectionWindow.py:61
+#: ../src/RemoteH/ConnectionWindow.py:61
 msgid "Exit"
 msgstr "Salir"
 
-#: ../src/Oops/ConnectionWindow.py:62
+#: ../src/RemoteH/ConnectionWindow.py:62
 msgid "File"
 msgstr "Fichero"
 
-#: ../src/Oops/ConnectionWindow.py:65
+#: ../src/RemoteH/ConnectionWindow.py:65
 msgid "Cut"
 msgstr "Cortar"
 
-#: ../src/Oops/ConnectionWindow.py:66
+#: ../src/RemoteH/ConnectionWindow.py:66
 msgid "Copy"
 msgstr "Copiar"
 
-#: ../src/Oops/ConnectionWindow.py:67
+#: ../src/RemoteH/ConnectionWindow.py:67
 msgid "Paste"
 msgstr "Pegar"
 
-#: ../src/Oops/ConnectionWindow.py:68
+#: ../src/RemoteH/ConnectionWindow.py:68
 msgid "Edit"
 msgstr "Editar"
 
-#: ../src/Oops/ConnectionWindow.py:71
+#: ../src/RemoteH/ConnectionWindow.py:71
 msgid "About"
 msgstr "Acerca de"
 
-#: ../src/Oops/ConnectionWindow.py:72
+#: ../src/RemoteH/ConnectionWindow.py:72
 msgid "Help"
 msgstr "Ayuda"
 
 #. Radio Boxes
-#: ../src/Oops/ConnectionWindow.py:77
+#: ../src/RemoteH/ConnectionWindow.py:77
 msgid "Get Help"
 msgstr "Pedir ayuda"
 
-#: ../src/Oops/ConnectionWindow.py:78
+#: ../src/RemoteH/ConnectionWindow.py:78
 msgid "Give Support"
 msgstr "Dar soporte"
 
-#: ../src/Oops/ConnectionWindow.py:81
+#: ../src/RemoteH/ConnectionWindow.py:81
 msgid "Use low colors"
 msgstr "Usar menos colores"
 
 #. self.sampleList,
 #. Get Help
-#: ../src/Oops/ConnectionWindow.py:86 ../src/Oops/ConnectionWindow.py:149
+#: ../src/RemoteH/ConnectionWindow.py:86 ../src/RemoteH/ConnectionWindow.py:149
 msgid "Enter/Select Support Address"
 msgstr "Dirección de soporte"
 
 #. Buttons
-#: ../src/Oops/ConnectionWindow.py:104
+#: ../src/RemoteH/ConnectionWindow.py:104
 msgid "Start"
 msgstr "Comenzar"
 
-#: ../src/Oops/ConnectionWindow.py:105
+#: ../src/RemoteH/ConnectionWindow.py:105
 msgid "Stop"
 msgstr "Detener"
 
-#: ../src/Oops/ConnectionWindow.py:110 ../src/Oops/ConnectionWindow.py:183
-#: ../src/Oops/ConnectionWindow.py:226
+#: ../src/RemoteH/ConnectionWindow.py:110 ../src/RemoteH/ConnectionWindow.py:183
+#: ../src/RemoteH/ConnectionWindow.py:226
 msgid "Idle"
 msgstr "En espera"
 
-#: ../src/Oops/ConnectionWindow.py:150
+#: ../src/RemoteH/ConnectionWindow.py:150
 msgid "Connecting..."
 msgstr "Conectando..."
 
-#: ../src/Oops/ConnectionWindow.py:155
+#: ../src/RemoteH/ConnectionWindow.py:155
 msgid "Invalid Support Address"
 msgstr "Dirección de soporte no válida"
 
 #. Give Suppport
-#: ../src/Oops/ConnectionWindow.py:157
+#: ../src/RemoteH/ConnectionWindow.py:157
 msgid "Starting Server..."
 msgstr "Arrancando el servidor..."
 
-#: ../src/Oops/ConnectionWindow.py:168
-msgid "About Oops"
-msgstr "Acerca de Oops"
+#: ../src/RemoteH/ConnectionWindow.py:168
+msgid "About RemoteH"
+msgstr "Acerca de RemoteH"
 
-#: ../src/Oops/ConnectionWindow.py:266
+#: ../src/RemoteH/ConnectionWindow.py:266
 msgid "Connected."
 msgstr "Conectado."
 
-#: ../src/Oops/ConnectionWindow.py:276
+#: ../src/RemoteH/ConnectionWindow.py:276
 msgid "Server running."
 msgstr "Servidor en marcha."
 
-#: ../src/Oops/ConnectionWindow.py:278
+#: ../src/RemoteH/ConnectionWindow.py:278
 #, python-format
-msgid "OopsThread.run(pid: %s) running..."
-msgstr "OopsThread.run(pid: %s) en marcha..."
+msgid "RemoteHThread.run(pid: %s) running..."
+msgstr "RemoteHThread.run(pid: %s) en marcha..."
 
-#: ../src/Oops/NATPMP.py:81
+#: ../src/RemoteH/NATPMP.py:81
 msgid "No error"
 msgstr "Sin error"
 
-#: ../src/Oops/NATPMP.py:82
+#: ../src/RemoteH/NATPMP.py:82
 msgid "The protocol version specified is unsupported"
 msgstr "La versión de protocolo especificada no está soportada"
 
-#: ../src/Oops/NATPMP.py:83
+#: ../src/RemoteH/NATPMP.py:83
 msgid "The operation was refused.  NAT-PMP may be turned off on gateway"
 msgstr "Operación rechazada. NAT-PMP podría estar desactivado en el gateway"
 
-#: ../src/Oops/NATPMP.py:84
+#: ../src/RemoteH/NATPMP.py:84
 msgid "There was a network failure.  The gateway may not have an IP address"
 msgstr "Error en la red. El gateway podría no tener una dirección IP"
 
 #. Network Failure
-#: ../src/Oops/NATPMP.py:85
+#: ../src/RemoteH/NATPMP.py:85
 msgid "The NAT-PMP gateway is out of resources and cannot create more mappings"
 msgstr ""
 
 #. can not create more mappings
-#: ../src/Oops/NATPMP.py:86
+#: ../src/RemoteH/NATPMP.py:86
 msgid "The NAT-PMP gateway does not support this operation"
 msgstr ""
 
 #. not a supported opcode
-#: ../src/Oops/NATPMP.py:87
+#: ../src/RemoteH/NATPMP.py:87
 msgid "The gateway does not support NAT-PMP"
 msgstr ""
 
-#: ../src/Oops/NATPMP.py:88
+#: ../src/RemoteH/NATPMP.py:88
 msgid "No valid gateway address was specified"
 msgstr ""
 
-#: ../src/Oops/NATPMP.py:89
+#: ../src/RemoteH/NATPMP.py:89
 msgid "Cannot automatically determine gateway address.  Must specify manually"
 msgstr ""

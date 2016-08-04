@@ -1,55 +1,55 @@
 #! /usr/bin/env python3
 
 """
-Oops - Oops is to support others
+RemoteH - RemoteH is to support others
 
 Copyright 2016 Raster Software Vigo
 
-Oops is a utility to facilitate the connection of VNC
+RemoteH is a utility to facilitate the connection of VNC
 
 Based on Gitso, from Aaron Gerber and Derek Buranen, @copyright: 2008 - 2010
 
-Oops is free software: you can redistribute it and/or modify
+RemoteH is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-Oops is distributed in the hope that it will be useful,
+RemoteH is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Oops.  If not, see <http://www.gnu.org/licenses/>.
+along with RemoteH.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import tkinter
 import os, sys, signal, os.path, time, re
-import Oops.AboutWindow
-import Oops.Processes
+import RemoteH.AboutWindow
+import RemoteH.Processes
 
 from gettext import gettext as _
 
 
 if sys.platform == 'darwin' or re.match('(?:open|free|net)bsd|linux',sys.platform):
-	import Oops.NATPMP
+	import RemoteH.NATPMP
 
 
 class ConnectionWindow(object):
-	"""	Main Window for Oops """
+	"""	Main Window for RemoteH """
 	def __init__(self, paths):
 		"""	Setup Application Window """
 
 		self.paths = paths
-		self.process = Oops.Processes.Processes(paths)
+		self.process = RemoteH.Processes.Processes(paths)
 		
 		# Disable until 0.7 release
 		self.enablePMP = False
 
 		self.app = tkinter.Tk()
 		self.app.minsize(width = 320, height = 100)
-		self.app.wm_title("Oops")
-		self.app.iconphoto(True, tkinter.PhotoImage(file=os.path.join(paths['main'],'oops.png')))
+		self.app.wm_title("RemoteH")
+		self.app.iconphoto(True, tkinter.PhotoImage(file=os.path.join(paths['main'],'remoteh.png')))
 		
 		self.opcion = tkinter.IntVar()
 		self.lowcolor = tkinter.IntVar()
@@ -111,7 +111,7 @@ class ConnectionWindow(object):
 
 	def about(self):
 		
-		t = Oops.AboutWindow.AboutWindow(self.paths)
+		t = RemoteH.AboutWindow.AboutWindow(self.paths)
 
 	def run(self):
 
@@ -168,7 +168,7 @@ class ConnectionWindow(object):
 		@author: Derek Buranen
 		@author: Aaron Gerber
 		"""
-		about = Oops.AboutWindow.AboutWindow(self, wx.ID_ABOUT, _("About Oops"), self.paths)
+		about = RemoteH.AboutWindow.AboutWindow(self, wx.ID_ABOUT, _("About RemoteH"), self.paths)
 
 
 	def KillPID(self, showMessage=True):
@@ -279,5 +279,5 @@ class ConnectionWindow(object):
 			self.process.giveSupport()
 			self.setMessage(_("Server running."), True)
 
-		print(_("OopsThread.run(pid: %s) running...") % str(self.process.returnPID))
+		print(_("RemoteHThread.run(pid: %s) running...") % str(self.process.returnPID))
 		self.app.after(500, self.check_wm)

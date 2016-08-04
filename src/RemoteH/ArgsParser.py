@@ -1,26 +1,26 @@
 #! /usr/bin/env python3
 
 """
-Oops - Oops is to support others
+RemoteH - RemoteH is to support others
 
 Copyright 2016 Raster Software Vigo
 
-Oops is a utility to facilitate the connection of VNC
+RemoteH is a utility to facilitate the connection of VNC
 
 Based on Gitso, from Aaron Gerber and Derek Buranen, @copyright: 2008 - 2010
 
-Oops is free software: you can redistribute it and/or modify
+RemoteH is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-Oops is distributed in the hope that it will be useful,
+RemoteH is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Oops.  If not, see <http://www.gnu.org/licenses/>.
+along with RemoteH.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import os
@@ -30,7 +30,7 @@ import os.path
 import urllib
 import re
 from gettext import gettext as _
-import Oops.pkg_data
+import RemoteH.pkg_data
 
 class ArgsParser:
 	def __init__(self):
@@ -47,12 +47,12 @@ class ArgsParser:
 		self.paths['low-colors'] = False
 		
 		if re.match('(?:open|free|net)bsd|linux',sys.platform):
-			self.paths['main'] = os.path.join(sys.path[0], '..', 'share', 'oops')
-			self.paths['copyright'] = os.path.join(sys.path[0], '..', 'share', 'doc', 'oops', 'COPYING')
+			self.paths['main'] = os.path.join(sys.path[0], '..', 'share', 'remoteh')
+			self.paths['copyright'] = os.path.join(sys.path[0], '..', 'share', 'doc', 'remoteh', 'COPYING')
 			self.paths['locales'] = os.path.join(sys.path[0], '..','share','locale')
 		elif sys.platform == "darwin":
 			self.paths['main'] = sys.path[0]
-			self.paths['copyright'] = os.path.join(sys.path[0], 'share', 'doc', 'oops', 'COPYING')
+			self.paths['copyright'] = os.path.join(sys.path[0], 'share', 'doc', 'remoteh', 'COPYING')
 			self.paths['locales'] = os.path.join(sys.path[0], 'locale')
 		else:
 			self.paths['main'] = os.path.join(sys.path[0], '..')
@@ -65,7 +65,7 @@ class ArgsParser:
 			if sys.argv[i] == '--help': # --help
 				self.HelpMenu()
 			elif sys.argv[i] == '--version': # --version
-				print(_("Oops {:s}  -- Copyright 2016 Sergio Costas Rodriguez;\nbased on Gitso, from Aaron Gerber and Derek Buranen @copyright: 2008 - 2010.").format(pkg_data.get_version()))
+				print(_("RemoteH {:s}  -- Copyright 2016 Sergio Costas Rodriguez;\nbased on Gitso, from Aaron Gerber and Derek Buranen @copyright: 2008 - 2010.").format(pkg_data.get_version()))
 				exit(0)
 			elif sys.argv[i] == '--dev': # --dev
 				print(_("Running in 'Development Mode'"))
@@ -134,14 +134,14 @@ class ArgsParser:
 			i = i + 1
 		
 		if sys.platform == "darwin":
-				self.paths['preferences'] = os.path.join(os.path.expanduser("~"), "Library", "Application Support", "Oops")
+				self.paths['preferences'] = os.path.join(os.path.expanduser("~"), "Library", "Application Support", "RemoteH")
 				if os.path.exists(self.paths['preferences']) != True:
 						os.makedirs(self.paths['preferences'], 0o700)
 				self.paths['preferences'] = os.path.join(self.paths['preferences'], "hosts")
 		elif sys.platform == "win32":
-				self.paths['preferences'] = os.path.join(os.getenv('USERPROFILE'), "oops-hosts")
+				self.paths['preferences'] = os.path.join(os.getenv('USERPROFILE'), "remoteh-hosts")
 		else:
-				self.paths['preferences'] = os.path.join(os.path.expanduser("~"), ".oops-hosts")
+				self.paths['preferences'] = os.path.join(os.path.expanduser("~"), ".remoteh-hosts")
 
 	#Help Menu
 	def HelpMenu(self):
@@ -152,7 +152,7 @@ class ArgsParser:
 		print(_("\t--connect {IP|DN}\tConnects to host (support giver)"))
 		print(_("\t--list {URL|FILE}\tAlternative Support list"))
 		print(_("\t--low-colors\t\tUse 8bit colors (for slow connections). Linux only"))
-		print(_("\t--version\t\tThe current Oops version"))
+		print(_("\t--version\t\tThe current RemoteH version"))
 		print(_("\t--help\t\tThis Menu"))
 		sys.exit(1)
 	

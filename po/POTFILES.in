@@ -1,7 +1,7 @@
-src/oops.py
-src/Oops/AboutWindow.py
-src/Oops/ArgsParser.py
-src/Oops/Processes.py
-src/Oops/ConnectionWindow.py
-src/Oops/NATPMP.py
-src/Oops/pkg_data.py
+src/remoteh.py
+src/RemoteH/AboutWindow.py
+src/RemoteH/ArgsParser.py
+src/RemoteH/Processes.py
+src/RemoteH/ConnectionWindow.py
+src/RemoteH/NATPMP.py
+src/RemoteH/pkg_data.py
