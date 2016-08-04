@@ -5,11 +5,11 @@ DATA_FILES = []
 OPTIONS = {'argv_emulation': True}
 
 setup(
-  version = "0.6.3",
-  description = "Gitso is to support Others",
-  name="Gitso",
+  version = "0.1.0",
+  description = "RemoteH is to support Others",
+  name="RemoteH",
   
-  windows=[{"script":"Gitso.py", "icon_resources":[(1,"icon.ico")]}],
-  data_files=[(".", ["icon.ico"])],
-  py_modules = ['AboutWindow', 'ConnectionWindow', 'ArgsParser', 'GitsoThread', 'Processes', 'NATPMP'],
+  windows=[{"script":"remoteh.py", "icon_resources":[(1,"remoteh.ico")]}],
+  data_files=[(".", ["remoteh.ico"])],
+  py_modules = ['AboutWindow', 'ConnectionWindow', 'ArgsParser', 'pkg_data', 'Processes', 'NATPMP'],
 )
