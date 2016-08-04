@@ -56,15 +56,21 @@ class ConnectionWindow(object):
 		self.address = tkinter.StringVar()
 		self.status = tkinter.StringVar()
 
+		self.displayHostBox = tkinter.Entry(self.app, textvariable = self.address)
+		self.displayHostBox.bind('<Return>', self.ConnectSupport)
+		self.address.set(_("Enter/Select Support Address"))
+		self.delete_entry = True
+		self.displayHostBox.bind("<FocusIn>",self.delete_entry_cb)
+
 		self.menu = tkinter.Menu(self.app)
 		filemenu = tkinter.Menu(self.menu, tearoff = 0)
 		filemenu.add_command(label=_("Exit"), command = self.app.quit)
 		self.menu.add_cascade(label=_("File"), menu = filemenu)
 		
 		editmenu = tkinter.Menu(self.menu, tearoff = 0)
-		editmenu.add_command(label=_("Cut"))
-		editmenu.add_command(label=_("Copy"))
-		editmenu.add_command(label=_("Paste"))
+		editmenu.add_command(label=_("Cut"),command=lambda:self.displayHostBox.event_generate('<<Cut>>'))
+		editmenu.add_command(label=_("Copy"),command=lambda:self.displayHostBox.event_generate('<<Copy>>'))
+		editmenu.add_command(label=_("Paste"),command=lambda:self.displayHostBox.event_generate('<<Paste>>'))
 		self.menu.add_cascade(label=_("Edit"), menu = editmenu)
 		
 		aboutmenu = tkinter.Menu(self.menu, tearoff = 0)
@@ -79,13 +85,6 @@ class ConnectionWindow(object):
 		self.opcion.set(0)
 
 		self.cb_lowcolors = tkinter.Checkbutton(self.app,text = _('Use low colors'), variable = self.lowcolor, onvalue = 1, offvalue = 0, anchor = tkinter.W)
-
-		self.displayHostBox = tkinter.Entry(self.app, textvariable = self.address)
-		self.displayHostBox.bind('<Return>', self.ConnectSupport)
-		#self.sampleList,
-		self.address.set(_("Enter/Select Support Address"))
-		self.delete_entry = True
-		self.displayHostBox.bind("<FocusIn>",self.delete_entry_cb)
 
 		self.rb_gethelp.pack(side = tkinter.TOP, fill = tkinter.X)
 		self.displayHostBox.pack(side = tkinter.TOP, fill = tkinter.X, padx = (20,0))

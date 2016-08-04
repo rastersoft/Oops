@@ -118,7 +118,7 @@ compile_translations()
 params_setup = {}
 
 params_setup['name'] = 'remoteh'
-params_setup['version'] = '0.1.0'
+params_setup['version'] = '0.2.0'
 params_setup['description']='RemoteH is to support others'
 params_setup['long_description']="A program to simplify using reverse VNC"
 params_setup['license']='GPLv3'

@@ -5,7 +5,7 @@ DATA_FILES = []
 OPTIONS = {'argv_emulation': True}
 
 setup(
-  version = "0.1.0",
+  version = "0.2.0",
   description = "RemoteH is to support Others",
   name="RemoteH",
   

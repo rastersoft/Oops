@@ -1,4 +1,7 @@
 ## History of versions ##
+* Version 0.2.0 (2016/08/04)
+  * Implemented Cut/Copy/Paste menu actions
+
 * Version 0.1.0 (2016/08/04)
   * First public version
   * Internationalization and localization support
