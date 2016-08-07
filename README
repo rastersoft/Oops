@@ -12,8 +12,8 @@ The main changes are:
 
 ##Building RemoteH
 ####Windows
-In the src folder you will find instructions on how to build RemoteH on Windows along with installation files.
-**You may have to change some paths in *makeremoteh.bat*** depending on your installation.
+
+Install python 3.4 and py2exe.
 
 ####Mac
 These instructions have been taken from https://code.google.com/p/gitso/wiki/BuildOSX
@@ -39,8 +39,7 @@ RemoteH requires the following files so make sure to install them:
 
 **Fedora Users**
 
-1. yum install subversion
-2. yum install rpmdevtools
+Run *makeremoteh_fedora.sh*.
 
 **Debian/Ubuntu packages**
 
