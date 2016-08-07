@@ -25,14 +25,14 @@ along with RemoteH.  If not, see <http://www.gnu.org/licenses/>.
 
 import tkinter
 import os, sys, signal, os.path, time, re
-import RemoteH.AboutWindow
-import RemoteH.Processes
+import remoteh.AboutWindow
+import remoteh.Processes
 
 from gettext import gettext as _
 
 
 if sys.platform == 'darwin' or re.match('(?:open|free|net)bsd|linux',sys.platform):
-	import RemoteH.NATPMP
+	import remoteh.NATPMP
 
 
 class ConnectionWindow(object):
@@ -41,7 +41,7 @@ class ConnectionWindow(object):
 		"""	Setup Application Window """
 
 		self.paths = paths
-		self.process = RemoteH.Processes.Processes(paths)
+		self.process = remoteh.Processes.Processes(paths)
 		
 		# Disable until 0.7 release
 		self.enablePMP = False
@@ -110,7 +110,7 @@ class ConnectionWindow(object):
 
 	def about(self):
 		
-		t = RemoteH.AboutWindow.AboutWindow(self.paths)
+		t = remoteh.AboutWindow.AboutWindow(self.paths)
 
 	def run(self):
 
@@ -167,7 +167,7 @@ class ConnectionWindow(object):
 		@author: Derek Buranen
 		@author: Aaron Gerber
 		"""
-		about = RemoteH.AboutWindow.AboutWindow(self, wx.ID_ABOUT, _("About RemoteH"), self.paths)
+		about = remoteh.AboutWindow.AboutWindow(self, wx.ID_ABOUT, _("About RemoteH"), self.paths)
 
 
 	def KillPID(self, showMessage=True):

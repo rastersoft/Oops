@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import os, os.path, sys
-import RemoteH.pkg_data
+import remoteh.pkg_data
 from gettext import gettext as _
 import tkinter
 import tkinter.ttk
@@ -36,7 +36,7 @@ class AboutWindow():
 		self.top = tkinter.Toplevel()
 		self.top.iconphoto(True, tkinter.PhotoImage(file=os.path.join(paths['main'],'remoteh.png')))
 		self.top.title(_("RemoteH is to Support Others"))
-		text1 = tkinter.Label(self.top, text = "RemoteH\n"+_("RemoteH is to Support Others")+"\n"+_("Version {:s}".format(RemoteH.pkg_data.get_version())))
+		text1 = tkinter.Label(self.top, text = "RemoteH\n"+_("RemoteH is to Support Others")+"\n"+_("Version {:s}".format(remoteh.pkg_data.get_version())))
 		text1.pack(side = tkinter.TOP, fill = tkinter.X)
 
 		notebook = tkinter.ttk.Notebook(self.top)

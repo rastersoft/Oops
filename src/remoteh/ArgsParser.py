@@ -30,7 +30,7 @@ import os.path
 import urllib
 import re
 from gettext import gettext as _
-import RemoteH.pkg_data
+import remoteh.pkg_data
 
 class ArgsParser:
 	def __init__(self):
