@@ -66,18 +66,18 @@ def get_data_files():
     data_files = []
 
     if platform == 'unix':
-        data_files.append((os.path.join('.','share','icons','hicolor','scalable','apps'),['data/icons/remoteh.svg']))
-        data_files.append((os.path.join('.','share','applications'),['data/remoteh.desktop']))
+        data_files.append((os.path.join('.','share','icons','hicolor','scalable','apps'),['../data/icons/remoteh.svg']))
+        data_files.append((os.path.join('.','share','applications'),['../data/remoteh.desktop']))
     if platform == "windows":
-        data_files.append((os.path.join('.'),['data/icons/remoteh.ico']))
-        data_files.append((os.path.join('.'),['data/icons/remoteh.png']))
+        data_files.append((os.path.join('.'),['../data/icons/remoteh.ico']))
+        data_files.append((os.path.join('.'),['../data/icons/remoteh.png']))
     else:
-        data_files.append((os.path.join('.','share','remoteh'),['data/icons/remoteh.png']))
-    data_files.append((os.path.join('.','share','doc','remoteh'),['COPYING']))
+        data_files.append((os.path.join('.','share','remoteh'),['../data/icons/remoteh.png']))
+    data_files.append((os.path.join('.','share','doc','remoteh'),['../COPYING']))
 
     try:
         for lang_name in [f for f in os.listdir('locale')]:
-            mofile = os.path.join('locale', lang_name,'LC_MESSAGES','remoteh.mo')
+            mofile = os.path.join('../locale', lang_name,'LC_MESSAGES','remoteh.mo')
             # translations must be always in /usr/share because Gtk.builder only search there. If someone knows how to fix this...
             if platform == 'windows':
                 target = os.path.join('.','locale', lang_name, 'LC_MESSAGES') # share/locale/fr/LC_MESSAGES/
@@ -92,13 +92,13 @@ def get_data_files():
 def compile_translations():
 
     try:
-        if (0 == os.system("msgfmt -h > /dev/null")) and os.path.exists('po'):
-            os.system("rm -rf locale")
-            for pofile in [f for f in os.listdir('po') if f.endswith('.po')]:
-                pofile = os.path.join('po', pofile)
+        if (0 == os.system("msgfmt -h > /dev/null")) and os.path.exists('../po'):
+            os.system("rm -rf ../locale")
+            for pofile in [f for f in os.listdir('../po') if f.endswith('.po')]:
+                pofile = os.path.join('../po', pofile)
     
                 lang = os.path.basename(pofile)[:-3] # len('.po') == 3
-                modir = os.path.join('locale', lang, 'LC_MESSAGES') # e.g. locale/fr/LC_MESSAGES/
+                modir = os.path.join('../locale', lang, 'LC_MESSAGES') # e.g. locale/fr/LC_MESSAGES/
                 mofile = os.path.join(modir, 'remoteh.mo') # e.g. locale/fr/LC_MESSAGES/devede_ng.mo
     
                 # create an architecture for these locales
@@ -130,8 +130,8 @@ params_setup['author'] = 'Sergio Costas-Rodriguez (Raster Software Vigo)'
 params_setup['author_email'] = 'rastersoft@gmail.com'
 
 if platform == 'windows':
-    params_setup['windows'] = [{"script":"src/remoteh.py", "icon_resources":[(1,"data/icons/remoteh.ico")]}]
+    params_setup['windows'] = [{"script":"remoteh.py", "icon_resources":[(1,"../data/icons/remoteh.ico")]}]
 else:
-    params_setup['scripts']=['src/remoteh.py']
+    params_setup['scripts']=['remoteh.py']
 
 setup(**params_setup)
