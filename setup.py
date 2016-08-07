@@ -69,7 +69,7 @@ def get_data_files():
         data_files.append((os.path.join('.','share','icons','hicolor','scalable','apps'),['data/icons/remoteh.svg']))
         data_files.append((os.path.join('.','share','applications'),['data/remoteh.desktop']))
     if platform == "windows":
-#        data_files.append((os.path.join('.'),['data/icons/remoteh.ico']))
+        data_files.append((os.path.join('.'),['data/icons/remoteh.ico']))
         data_files.append((os.path.join('.'),['data/icons/remoteh.png']))
     else:
         data_files.append((os.path.join('.','share','remoteh'),['data/icons/remoteh.png']))
