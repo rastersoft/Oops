@@ -30,8 +30,8 @@ import gettext
 import locale
 import pkg_resources
 
-import RemoteH.ConnectionWindow
-import RemoteH.ArgsParser
+import remoteh.ConnectionWindow
+import remoteh.ArgsParser
 
 if sys.platform.startswith('win'):
 	if os.getenv('LANG') is None:
@@ -41,7 +41,7 @@ if sys.platform.startswith('win'):
 
 if __name__ == "__main__":
 
-	args = RemoteH.ArgsParser.ArgsParser()
+	args = remoteh.ArgsParser.ArgsParser()
 	locale.setlocale(locale.LC_ALL, '')
 	if sys.platform.startswith('win'):
 		gettext.bindtextdomain('remoteh', os.path.join('.','locale'))
@@ -49,5 +49,5 @@ if __name__ == "__main__":
 		gettext.bindtextdomain('remoteh', args.paths['locales'])
 	gettext.textdomain('remoteh')
 
-	w = RemoteH.ConnectionWindow.ConnectionWindow(args.GetPaths())
+	w = remoteh.ConnectionWindow.ConnectionWindow(args.GetPaths())
 	w.run()
