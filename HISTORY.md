@@ -1,4 +1,9 @@
 ## History of versions ##
+* Version 0.3.0 (2016/08/06)
+  * New icon
+  * Fixed the .desktop file (now it works)
+  * Fixed the dependencies in the Debian and Ubuntu packages
+
 * Version 0.2.0 (2016/08/04)
   * Implemented Cut/Copy/Paste menu actions
 

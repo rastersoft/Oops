@@ -1,10 +1,10 @@
 [Desktop Entry]
 Version=0.7.0
 Encoding=UTF-8
-Name=Gitso
+Name=RemoteH
 Comment=Connect to others using VNC protocol
-Exec=gitso.py
-Icon=gitso.png
+Exec=remoteh.py
+Icon=remoteh.svg
 Terminal=false
 MimeType=application/x-remote-connection;
 Type=Application

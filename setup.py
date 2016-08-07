@@ -29,6 +29,7 @@ from distutils.core import setup
 try:
     from distutils import dep_util
 except:
+    print("Failed to import DEP_UTIL")
     pass
 
 OPTIONS = {}
@@ -65,13 +66,12 @@ def get_data_files():
     data_files = []
 
     if platform == 'unix':
-        data_files.append((os.path.join('.','share','icons','hicolor','512x512','apps'),['data/icons/remoteh.png']))
+        data_files.append((os.path.join('.','share','icons','hicolor','scalable','apps'),['data/icons/remoteh.svg']))
         data_files.append((os.path.join('.','share','applications'),['data/remoteh.desktop']))
     if platform == "windows":
         data_files.append((os.path.join('.'),['data/icons/remoteh.ico']))
         data_files.append((os.path.join('.'),['data/icons/remoteh.png']))
     else:
-        data_files.append((os.path.join('.','share','remoteh'),['data/icons/remoteh.ico']))
         data_files.append((os.path.join('.','share','remoteh'),['data/icons/remoteh.png']))
     data_files.append((os.path.join('.','share','doc','remoteh'),['COPYING']))
 
@@ -118,14 +118,16 @@ compile_translations()
 params_setup = {}
 
 params_setup['name'] = 'remoteh'
-params_setup['version'] = '0.2.0'
+params_setup['version'] = '0.3.0'
 params_setup['description']='RemoteH is to support others'
 params_setup['long_description']="A program to simplify using reverse VNC"
 params_setup['license']='GPLv3'
 params_setup['data_files'] = get_data_files()
 params_setup['packages']=['RemoteH']
 params_setup['package_dir'] = {"RemoteH" : "src/RemoteH"}
-
+params_setup['url'] = 'http://www.rastersoft.com/programas/remoteh.html'
+params_setup['author'] = 'Sergio Costas-Rodriguez (Raster Software Vigo)'
+params_setup['author_email'] = 'rastersoft@gmail.com'
 
 if platform == 'windows':
     params_setup['windows'] = [{"script":"src/remoteh.py", "icon_resources":[(1,"data/icons/remoteh.ico")]}]
